@@ -6,6 +6,7 @@
     "moduleResolution": "node",
     "outDir": "dist/test",
     "skipLibCheck": true,
+    "resolveJsonModule": true,
     "noEmit": false
   },
   "exclude": []
