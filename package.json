@@ -25,7 +25,7 @@
     "dev:firefox": "cross-env BUILD_TARGET=firefox webpack --watch",
     "dev:safari": "cross-env BUILD_TARGET=safari webpack --watch",
     "dev:web": "cross-env BUILD_TARGET=web webpack serve",
-    "lint": "eslint src",
+    "lint": "eslint src --cache",
     "lint:fix": "npm run lint -- --fix",
     "prettier": "prettier --write .",
     "prettier:check": "prettier --check .",
@@ -42,7 +42,7 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "**/*.{ts,tsx}": "eslint --fix",
+    "**/*.{ts,tsx}": "eslint --fix --cache",
     "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {

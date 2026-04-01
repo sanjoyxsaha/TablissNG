@@ -224,7 +224,7 @@ const Input: FC<Props> = (props) => {
             id="plugins.links.input.keyboardShortcut"
             defaultMessage="Keyboard shortcut {number}"
             values={{ number: props.number }}
-            description="Heading indicating the keyboard shortcut assigned to this link"
+            description="Keyboard shortcut identifier for this link"
           />
         ) : (
           <FormattedMessage
@@ -666,7 +666,7 @@ const Input: FC<Props> = (props) => {
           id="plugins.links.input.keyboardShortcut"
           defaultMessage="Keyboard shortcut {number}"
           values={{ number: props.number }}
-          description="Label indicating the assigned keyboard shortcut number"
+          description="Keyboard shortcut identifier for this link"
         />
         <input
           type="text"
