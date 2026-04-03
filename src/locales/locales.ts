@@ -11,23 +11,16 @@ export type LocaleMessages = Record<string, string>;
 type LocaleModule = { default: LocaleMessages };
 type LocaleLoader = () => Promise<LocaleModule>;
 
-type ExtractedMessage =
-  | string
-  | {
-      defaultMessage?: string;
-    };
+type ExtractedMessageEntry = {
+  id: string;
+  defaultMessage?: string;
+};
 
 export const baseMessages: LocaleMessages = Object.fromEntries(
-  Object.entries(extractedMessages as Record<string, ExtractedMessage>).map(
-    ([id, value]) => [
-      id,
-      typeof value === "string"
-        ? value
-        : typeof value?.defaultMessage === "string"
-          ? value.defaultMessage
-          : "",
-    ],
-  ),
+  (extractedMessages as ExtractedMessageEntry[]).map((entry) => [
+    entry.id,
+    typeof entry.defaultMessage === "string" ? entry.defaultMessage : "",
+  ]),
 );
 
 const createLocaleLoader = (code: string): LocaleLoader => {
