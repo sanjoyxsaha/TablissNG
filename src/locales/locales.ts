@@ -11,13 +11,8 @@ export type LocaleMessages = Record<string, string>;
 type LocaleModule = { default: LocaleMessages };
 type LocaleLoader = () => Promise<LocaleModule>;
 
-type ExtractedMessageEntry = {
-  id: string;
-  defaultMessage?: string;
-};
-
 export const baseMessages: LocaleMessages = Object.fromEntries(
-  (extractedMessages as ExtractedMessageEntry[]).map((entry) => [
+  extractedMessages.map((entry) => [
     entry.id,
     typeof entry.defaultMessage === "string" ? entry.defaultMessage : "",
   ]),

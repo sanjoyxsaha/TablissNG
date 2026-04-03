@@ -1,10 +1,8 @@
 declare module "*/messages.json" {
-  const value: Record<
-    string,
-    {
-      defaultMessage?: string;
-      description?: string;
-    }
-  >;
+  const value: {
+    id: string;
+    defaultMessage?: string;
+    description?: string;
+  }[];
   export default value;
 }
