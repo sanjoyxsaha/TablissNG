@@ -1,27 +1,46 @@
-import React, { useState, useEffect } from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import "./Settings.sass";
+
+import { Icon } from "@iconify/react";
+import { useEffect, useRef, useState } from "react";
+import { type FC, memo, useContext, useMemo } from "react";
+import GitHubButton from "react-github-btn";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+
 import { UiContext } from "../../contexts/ui";
 import { exportStore, importStore, resetStore } from "../../db/action";
+import { db } from "../../db/state";
 import { useKeyPress } from "../../hooks";
-import { Icon } from "@iconify/react";
+import { useTheme } from "../../hooks";
+import { useKey } from "../../lib/db/react";
 import Logo from "../shared/Logo";
 import Background from "./Background";
 import Persist from "./Persist";
-import "./Settings.sass";
 import System from "./System";
 import Widgets from "./Widgets";
-import GitHubButton from "react-github-btn";
-import { db } from "../../db/state";
-import { useKey } from "../../lib/db/react";
-import { useTheme } from "../../hooks";
 
-const Settings: React.FC = () => {
-  const { toggleSettings } = React.useContext(UiContext);
+const messages = defineMessages({
+  scrollToTop: {
+    id: "settings.scrollToTop",
+    defaultMessage: "Scroll to top",
+    description: "Tooltip for scroll to top button",
+  },
+  resetConfirm: {
+    id: "settings.reset.confirm",
+    defaultMessage:
+      "Are you sure you want to delete all of your TablissNG settings? This cannot be undone.",
+    description: "Confirmation message when resetting settings",
+  },
+});
+
+const Settings: FC = () => {
+  const { toggleSettings } = useContext(UiContext);
   const [settingsIconPosition] = useKey(db, "settingsIconPosition");
   const [autoHideSettings] = useKey(db, "autoHideSettings");
   const { isDark } = useTheme();
   const intl = useIntl();
   const [isHovered, setIsHovered] = useState(true);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const planeRef = useRef<HTMLDivElement>(null);
 
   const settingsOnRight =
     settingsIconPosition === "bottomRight" ||
@@ -31,18 +50,20 @@ const Settings: React.FC = () => {
     setIsHovered(true);
   }, [toggleSettings]);
 
+  const handleScroll = () => {
+    if (planeRef.current) {
+      setShowScrollTop(planeRef.current.scrollTop > 200);
+    }
+  };
+
+  const scrollToTop = () => {
+    if (planeRef.current) {
+      planeRef.current.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   const handleReset = () => {
-    if (
-      confirm(
-        intl.formatMessage({
-          id: "settings.reset.confirm",
-          defaultMessage:
-            "Are you sure you want to delete all of your TablissNG settings? This cannot be undone.",
-          description: "Confirmation message when resetting settings",
-        }),
-      )
-    )
-      resetStore();
+    if (confirm(intl.formatMessage(messages.resetConfirm))) resetStore();
   };
 
   const handleExport = () => {
@@ -119,6 +140,7 @@ const Settings: React.FC = () => {
       )}
 
       <div
+        ref={planeRef}
         className="plane"
         style={{
           left: settingsOnRight ? "auto" : 0,
@@ -129,6 +151,7 @@ const Settings: React.FC = () => {
           transition: "opacity 0.3s ease, visibility 0.3s ease",
         }}
         onMouseEnter={() => setIsHovered(true)}
+        onScroll={handleScroll}
         onMouseLeave={() => setIsHovered(false)}
       >
         <Logo />
@@ -208,7 +231,7 @@ const Settings: React.FC = () => {
             />
           </h4>
 
-          {React.useMemo(
+          {useMemo(
             () => (
               <div
                 style={{
@@ -301,8 +324,18 @@ const Settings: React.FC = () => {
           tagName="p"
         />
       </div>
+
+      {showScrollTop && (
+        <button
+          className={`button button--primary scroll-to-top ${settingsOnRight ? "scroll-to-top--right" : "scroll-to-top--left"}`}
+          onClick={scrollToTop}
+          title={intl.formatMessage(messages.scrollToTop)}
+        >
+          <Icon icon="feather:arrow-up" />
+        </button>
+      )}
     </div>
   );
 };
 
-export default React.memo(Settings);
+export default memo(Settings);

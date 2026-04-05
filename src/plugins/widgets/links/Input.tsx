@@ -1,17 +1,21 @@
-import React, { FC, useState } from "react";
+import "./Input.sass";
+
+import { Icon } from "@iconify/react";
+import icons from "feather-icons/dist/icons.json";
+import type { ChangeEvent } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+
+import { addIconData, normalizeUrl } from "../../../utils";
 import {
+  DownIcon,
   IconButton,
   RemoveIcon,
-  DownIcon,
   UpIcon,
 } from "../../../views/shared";
-import { Link, IconCacheItem, Cache } from "./types";
-import { Icon } from "@iconify/react";
-import { normalizeUrl } from "../../../utils";
-import "./Input.sass";
 import { IconPickerModal } from "./components/IconPickerModal";
 import { SizeInputs } from "./components/SizeInputs";
+import { Cache, IconCacheItem, Link } from "./types";
 
 const messages = defineMessages({
   removeLink: {
@@ -76,7 +80,7 @@ const Input: FC<Props> = (props) => {
   const isCustomUpload = props.icon === "_custom_upload";
   const isFeather = props.icon === "_feather";
 
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
 

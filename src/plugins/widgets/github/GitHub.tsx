@@ -1,24 +1,24 @@
-import React, { FC } from "react";
-import { GitHubCalendar } from "react-github-calendar";
-import type { Activity } from "react-activity-calendar";
-import { useIntl } from "react-intl";
 import "./GitHub.sass";
+
+import { FC } from "react";
+import { GitHubCalendar } from "react-github-calendar";
+import { useIntl } from "react-intl";
+
 import { useFormatMessages } from "../../../hooks/useFormatMessages";
 import { useTheme } from "../../../hooks/useTheme";
 import {
+  calendarLegendMessages,
   monthMessages,
   weekdayMessages,
-  legendMessages,
-  messages,
-  tooltipMessages,
-} from "./messages";
-import { Props, defaultData } from "./types";
+} from "../../../locales/messages";
+import { messages, tooltipMessages } from "./messages";
+import { defaultData, Props } from "./types";
 
 const GitHubCalendarWidget: FC<Props> = ({ data = defaultData }) => {
   const intl = useIntl();
   const months = useFormatMessages(monthMessages);
   const weekdays = useFormatMessages(weekdayMessages);
-  const legend = useFormatMessages(legendMessages);
+  const legend = useFormatMessages(calendarLegendMessages);
   const { isDark } = useTheme();
 
   if (!data.username) return null;
@@ -88,7 +88,7 @@ const GitHubCalendarWidget: FC<Props> = ({ data = defaultData }) => {
           data.showTooltips
             ? {
                 activity: {
-                  text: (activity: Activity) => {
+                  text: (activity) => {
                     if (activity.count === 0) {
                       return intl.formatMessage(tooltipMessages.noActivity, {
                         date: activity.date,

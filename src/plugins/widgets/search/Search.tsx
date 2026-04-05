@@ -1,16 +1,24 @@
-import React, { FC, useRef, useState } from "react";
-import { defineMessages, useIntl } from "react-intl";
+import "./Search.sass";
+
 import { Icon } from "@iconify/react";
+import type {
+  ChangeEvent,
+  FormEvent,
+  KeyboardEvent as ReactKeyboardEvent,
+} from "react";
+import { FC, useRef, useState } from "react";
+import { defineMessages, useIntl } from "react-intl";
+
 import { useKeyPress } from "../../../hooks";
+import { isSpecialUrl } from "../../../utils";
 import {
   getSuggestions,
   getWikipediaSuggestions,
   WikipediaSuggestionResult,
 } from "./getSuggestions";
 import Suggestions from "./Suggestions";
-import { Props, defaultData } from "./types";
+import { defaultData, Props } from "./types";
 import { buildUrl, getSearchUrl, getSuggestUrl } from "./utils";
-import "./Search.sass";
 
 export const messages = defineMessages({
   placeholder: {
@@ -34,7 +42,7 @@ const Search: FC<Props> = ({ data = defaultData }) => {
 
   const keyBind = data.keyBind ?? "G";
   useKeyPress(
-    (event: KeyboardEvent) => {
+    (event: globalThis.KeyboardEvent) => {
       event.preventDefault();
       if (searchInput.current) {
         searchInput.current.focus();
@@ -43,7 +51,7 @@ const Search: FC<Props> = ({ data = defaultData }) => {
     [keyBind.toUpperCase(), keyBind.toLowerCase()],
   );
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     previousValue.current = event.target.value;
 
     if (data.suggestionsEngine === "wikipedia") {
@@ -64,7 +72,7 @@ const Search: FC<Props> = ({ data = defaultData }) => {
     }
   };
 
-  const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyUp = (event: ReactKeyboardEvent<HTMLInputElement>) => {
     if (!suggestions) {
       return;
     }
@@ -115,22 +123,46 @@ const Search: FC<Props> = ({ data = defaultData }) => {
     search();
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     search();
   };
 
   const search = () => {
-    if (data.searchEngine == "default" && BUILD_TARGET != "web") {
-      browser.search.query({ text: searchInput.current!.value });
+    const query = searchInput.current!.value;
+    const url = buildUrl(
+      query,
+      getSearchUrl(data.searchEngine, data.searchEngineCustom),
+    );
+
+    // If it's a special URL, handle it regardless of search engine
+    if (isSpecialUrl(url)) {
+      if (BUILD_TARGET === "firefox") {
+        alert(
+          "Sorry, Firefox restricts access to this type of URL. This is completely out of my control.",
+        );
+        return;
+      }
+
+      if (BUILD_TARGET !== "web") {
+        browser.tabs.update({
+          url,
+        });
+      } else {
+        // Web build can just redirect
+        window.location.assign(url);
+      }
       return;
     }
-    window.location.assign(
-      buildUrl(
-        searchInput.current!.value,
-        getSearchUrl(data.searchEngine, data.searchEngineCustom),
-      ),
-    );
+
+    // If it's the default search engine and not a special URL, use browser search
+    if (data.searchEngine === "default" && BUILD_TARGET !== "web") {
+      browser.search.query({ text: query });
+      return;
+    }
+
+    // Regular search or URL for other cases
+    window.location.assign(url);
   };
 
   return (

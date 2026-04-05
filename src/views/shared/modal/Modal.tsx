@@ -1,21 +1,16 @@
-import React from "react";
 import "./Modal.sass";
 
+import type { FC, ReactNode } from "react";
+
 type Props = {
-  children: React.ReactNode;
-  footer?: React.ReactNode;
+  children: ReactNode;
+  footer?: ReactNode;
   onClose: () => void;
   className?: string;
   center?: boolean;
 };
 
-const Modal: React.FC<Props> = ({
-  children,
-  footer,
-  onClose,
-  className,
-  center,
-}) => {
+const Modal: FC<Props> = ({ children, footer, onClose, className, center }) => {
   return (
     <div
       className={`Modal-container ${center ? "Modal-container--center" : ""}`}
