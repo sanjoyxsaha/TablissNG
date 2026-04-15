@@ -27,7 +27,6 @@ export default defineConfig(
   {
     files: [
       "webpack.config.js",
-      "jest.config.json",
       "scripts/**/*.js",
       "eslint.config.mjs",
       "docs/sync-assets.js",
