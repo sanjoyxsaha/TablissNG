@@ -5,7 +5,6 @@ const fixtures = "e2e/fixtures";
 async function selectMediaBackground(page: Page) {
   await page.locator(".Overlay a").first().click();
 
-  await page.locator("h2", { hasText: "Background" }).click();
   await page
     .locator("div", { has: page.locator("h2", { hasText: "Background" }) })
     .locator("select.primary")
