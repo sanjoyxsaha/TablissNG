@@ -1,7 +1,8 @@
+import "./DisplayList.sass";
+
+import { Spinner } from "../../../../shared";
 import type { DisplayList, Item } from "../../types";
 import { colourPalette } from "../../types";
-import { Spinner } from "../../../../shared";
-import "./DisplayList.sass";
 
 interface DisplayListComponentProps {
   header: string;

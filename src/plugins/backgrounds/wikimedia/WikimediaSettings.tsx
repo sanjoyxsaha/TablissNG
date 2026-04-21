@@ -1,14 +1,13 @@
-import * as React from "react";
-import { FormattedMessage } from "react-intl";
 import "./WikimediaSettings.sass";
-import { DebounceInput } from "../../shared";
-import { WikimediaDate, defaultData, Props } from "./types";
-import { backgroundMessages } from "../../../locales/messages";
 
-const WikimediaSettings: React.FC<Props> = ({
-  data = defaultData,
-  setData,
-}) => (
+import type { FC } from "react";
+import { FormattedMessage } from "react-intl";
+
+import { backgroundMessages } from "../../../locales/messages";
+import { DebounceInput } from "../../shared";
+import { defaultData, Props, WikimediaDate } from "./types";
+
+const WikimediaSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="WikimediaSettings">
     <label>
       <FormattedMessage {...backgroundMessages.dateOfPicture} />

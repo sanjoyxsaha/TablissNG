@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
+
 import { weekdayFullMessages } from "../../../locales/messages";
-import { Props, defaultData } from "./types";
+import { defaultData, Props } from "./types";
 
 const WorkHoursSettings: FC<Props> = ({ data = defaultData, setData }) => {
   const intl = useIntl();

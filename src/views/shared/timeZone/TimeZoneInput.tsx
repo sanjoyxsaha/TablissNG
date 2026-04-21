@@ -1,8 +1,9 @@
 import { getTimezoneOffset } from "date-fns-tz";
-import * as React from "react";
+import { type FC, useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
-import zones from "./zones.json";
+
 import { commonMessages } from "../../../locales/messages";
+import zones from "./zones.json";
 
 type Props = {
   timeZone: string | null;
@@ -17,10 +18,10 @@ type ZoneOption = {
 
 let cachedZoneOptions: ZoneOption[] | null = null;
 
-const TimeZoneInput: React.FC<Props> = ({ timeZone, onChange }) => {
-  const [zoneOptions, setZoneOptions] = React.useState(cachedZoneOptions);
+const TimeZoneInput: FC<Props> = ({ timeZone, onChange }) => {
+  const [zoneOptions, setZoneOptions] = useState(cachedZoneOptions);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (zoneOptions !== null) return;
 
     const date = new Date();

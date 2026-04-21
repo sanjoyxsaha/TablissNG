@@ -1,24 +1,25 @@
 import { ChangeEvent, FC, useRef } from "react";
+import { FormattedMessage } from "react-intl";
+
+import useAuth from "../../../hooks/useAuth";
+import { commonMessages } from "../../../locales/messages";
+import Button from "../../../views/shared/Button";
+import { Spinner } from "../../shared";
+import useBoards from "./hooks/useBoards";
+import useLists from "./hooks/useLists";
+import { trelloAuthStore } from "./stores/trelloAuthStore";
 import {
   BoardPreference,
   createFetchJob,
   defaultCache,
   defaultData,
-  Props,
   FetchJob,
+  Props,
   TrelloSession,
 } from "./types";
-import Button from "../../../views/shared/Button";
-import { FormattedMessage } from "react-intl";
 import { Board, List } from "./types";
 import ListCheckbox from "./ui/ListCheckbox/ListCheckbox";
-import { Spinner } from "../../shared";
-import useAuth from "../../../hooks/useAuth";
-import { trelloAuthStore } from "./stores/trelloAuthStore";
-import useBoards from "./hooks/useBoards";
-import useLists from "./hooks/useLists";
-import { trelloAuthFlow, onTrelloSignOut } from "./utils/auth";
-import { commonMessages } from "../../../locales/messages";
+import { onTrelloSignOut, trelloAuthFlow } from "./utils/auth";
 
 const TrelloSettings: FC<Props> = ({
   data = defaultData,

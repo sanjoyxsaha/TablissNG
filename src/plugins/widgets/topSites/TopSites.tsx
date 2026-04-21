@@ -1,8 +1,10 @@
+import "./TopSites.sass";
+
 import { FC, useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
-import { Props, defaultCache, defaultData } from "./types";
+
 import { Display } from "../links/Display";
-import "./TopSites.sass";
+import { defaultCache, defaultData, Props } from "./types";
 
 export const truncateText = (text: string, maxLength: number): string => {
   if (maxLength === 0 || text.length <= maxLength) return text;

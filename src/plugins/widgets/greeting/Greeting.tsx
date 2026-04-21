@@ -3,7 +3,7 @@ import { useIntl } from "react-intl";
 
 import { useTime } from "../../../hooks";
 import { messages } from "./messages";
-import { Props, defaultData } from "./types";
+import { defaultData, Props } from "./types";
 
 const Greeting: FC<Props> = ({ data = defaultData }) => {
   const hour = useTime().getHours();

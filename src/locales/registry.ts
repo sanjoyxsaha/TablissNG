@@ -52,6 +52,7 @@ export const localeOptions: LocaleOption[] = [
   { code: "ta", title: "Tamil", label: "தமிழ்" },
   { code: "th", title: "Thai", label: "ไทย" },
   { code: "tr", title: "Turkish", label: "Türkçe" },
+  { code: "tok", title: "toki pona", label: "Toki Pona" },
   { code: "vi", title: "Vietnamese", label: "Tiếng Việt" },
   { code: "zh-CN", title: "Simplified Chinese (China)", label: "中文（中国）" },
   {

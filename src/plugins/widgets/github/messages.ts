@@ -1,18 +1,5 @@
 import { defineMessages } from "react-intl";
 
-export const legendMessages = defineMessages({
-  less: {
-    id: "plugins.github.legend.less",
-    defaultMessage: "Less",
-    description: "Less text for GitHub calendar legend",
-  },
-  more: {
-    id: "plugins.github.legend.more",
-    defaultMessage: "More",
-    description: "More text for GitHub calendar legend",
-  },
-});
-
 export const messages = defineMessages({
   totalCount: {
     id: "plugins.github.totalCount",

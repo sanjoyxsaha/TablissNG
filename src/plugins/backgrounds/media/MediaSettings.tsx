@@ -1,11 +1,13 @@
-import { useState } from "react";
-import * as React from "react";
-import { FormattedMessage, useIntl, defineMessages } from "react-intl";
-import { useObjectUrls } from "../../../hooks";
-import { IconButton, RemoveIcon } from "../../../views/shared";
-import { backgroundMessages } from "../../../locales/messages";
-import BaseSettings from "../base/BaseSettings";
 import "./MediaSettings.sass";
+
+import { useState } from "react";
+import { type FC } from "react";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+
+import { useObjectUrls } from "../../../hooks";
+import { backgroundMessages } from "../../../locales/messages";
+import { IconButton, RemoveIcon } from "../../../views/shared";
+import BaseSettings from "../base/BaseSettings";
 import { defaultCache, defaultData, Props } from "./types";
 
 const messages = defineMessages({
@@ -16,7 +18,7 @@ const messages = defineMessages({
   },
 });
 
-const ImageSettings: React.FC<Props> = ({
+const ImageSettings: FC<Props> = ({
   cache = defaultCache,
   setCache,
   data = defaultData,
@@ -66,6 +68,37 @@ const ImageSettings: React.FC<Props> = ({
           />
         }
       />
+      <label>
+        <FormattedMessage
+          id="backgrounds.media.sortOrder"
+          defaultMessage="Sort order"
+          description="Label for selecting media display order"
+        />
+        <select
+          value={data.sortOrder}
+          onChange={(event) =>
+            setData({
+              ...data,
+              sortOrder: event.target.value as "sequence" | "random",
+            })
+          }
+        >
+          <option value="sequence">
+            <FormattedMessage
+              id="backgrounds.media.sortOrderSequence"
+              defaultMessage="In sequence"
+              description="Option label to show uploaded media in original order"
+            />
+          </option>
+          <option value="random">
+            <FormattedMessage
+              id="backgrounds.media.sortOrderRandom"
+              defaultMessage="Random"
+              description="Option label to show uploaded media in random order"
+            />
+          </option>
+        </select>
+      </label>
       <label>
         <input
           accept=".mp4, .webm, .ogg, image/*"

@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from "react";
-import { Props, defaultData } from "./types";
+
+import { defaultData, Props } from "./types";
 
 interface GradientData {
   name: string;

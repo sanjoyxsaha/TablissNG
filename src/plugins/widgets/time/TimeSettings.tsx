@@ -1,8 +1,9 @@
 import { FC } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-import { Props, defaultData } from "./types";
-import TimeZoneInput from "../../../views/shared/timeZone/TimeZoneInput";
+
 import { pluginMessages } from "../../../locales/messages";
+import TimeZoneInput from "../../../views/shared/timeZone/TimeZoneInput";
+import { defaultData, Props } from "./types";
 
 const TimeSettings: FC<Props> = ({ data = defaultData, setData }) => {
   const intl = useIntl();

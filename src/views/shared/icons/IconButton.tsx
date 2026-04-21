@@ -1,8 +1,7 @@
-import { FC } from "react";
-import * as React from "react";
+import type { FC, ReactNode } from "react";
 
 interface Props {
-  children: React.ReactNode;
+  children: ReactNode;
   onClick: () => void;
   primary?: boolean;
   title?: string;

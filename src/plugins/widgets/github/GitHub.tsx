@@ -1,43 +1,46 @@
+import "./GitHub.sass";
+
 import { FC } from "react";
 import { GitHubCalendar } from "react-github-calendar";
 import { useIntl } from "react-intl";
-import "./GitHub.sass";
+
 import { useTheme } from "../../../hooks/useTheme";
 import {
-  monthShortMessages,
-  weekdayShortMessages,
+  calendarLegendMessages,
+  monthMessages,
+  weekdayMessages,
 } from "../../../locales/messages";
-import { legendMessages, messages, tooltipMessages } from "./messages";
-import { Props, defaultData } from "./types";
+import { messages, tooltipMessages } from "./messages";
+import { defaultData, Props } from "./types";
 
 const GitHubCalendarWidget: FC<Props> = ({ data = defaultData }) => {
   const intl = useIntl();
   const months = {
-    jan: intl.formatMessage(monthShortMessages.jan),
-    feb: intl.formatMessage(monthShortMessages.feb),
-    mar: intl.formatMessage(monthShortMessages.mar),
-    apr: intl.formatMessage(monthShortMessages.apr),
-    may: intl.formatMessage(monthShortMessages.may),
-    jun: intl.formatMessage(monthShortMessages.jun),
-    jul: intl.formatMessage(monthShortMessages.jul),
-    aug: intl.formatMessage(monthShortMessages.aug),
-    sep: intl.formatMessage(monthShortMessages.sep),
-    oct: intl.formatMessage(monthShortMessages.oct),
-    nov: intl.formatMessage(monthShortMessages.nov),
-    dec: intl.formatMessage(monthShortMessages.dec),
+    jan: intl.formatMessage(monthMessages.jan),
+    feb: intl.formatMessage(monthMessages.feb),
+    mar: intl.formatMessage(monthMessages.mar),
+    apr: intl.formatMessage(monthMessages.apr),
+    may: intl.formatMessage(monthMessages.may),
+    jun: intl.formatMessage(monthMessages.jun),
+    jul: intl.formatMessage(monthMessages.jul),
+    aug: intl.formatMessage(monthMessages.aug),
+    sep: intl.formatMessage(monthMessages.sep),
+    oct: intl.formatMessage(monthMessages.oct),
+    nov: intl.formatMessage(monthMessages.nov),
+    dec: intl.formatMessage(monthMessages.dec),
   };
   const weekdays = {
-    sun: intl.formatMessage(weekdayShortMessages.sun),
-    mon: intl.formatMessage(weekdayShortMessages.mon),
-    tue: intl.formatMessage(weekdayShortMessages.tue),
-    wed: intl.formatMessage(weekdayShortMessages.wed),
-    thu: intl.formatMessage(weekdayShortMessages.thu),
-    fri: intl.formatMessage(weekdayShortMessages.fri),
-    sat: intl.formatMessage(weekdayShortMessages.sat),
+    sun: intl.formatMessage(weekdayMessages.sun),
+    mon: intl.formatMessage(weekdayMessages.mon),
+    tue: intl.formatMessage(weekdayMessages.tue),
+    wed: intl.formatMessage(weekdayMessages.wed),
+    thu: intl.formatMessage(weekdayMessages.thu),
+    fri: intl.formatMessage(weekdayMessages.fri),
+    sat: intl.formatMessage(weekdayMessages.sat),
   };
   const legend = {
-    less: intl.formatMessage(legendMessages.less),
-    more: intl.formatMessage(legendMessages.more),
+    less: intl.formatMessage(calendarLegendMessages.less),
+    more: intl.formatMessage(calendarLegendMessages.more),
   };
   const { isDark } = useTheme();
 

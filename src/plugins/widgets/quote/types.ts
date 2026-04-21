@@ -1,5 +1,5 @@
-import { API } from "../../types";
 import { HOURS } from "../../../utils";
+import { API } from "../../types";
 
 export type Quote = {
   author?: string;

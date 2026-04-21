@@ -1,15 +1,17 @@
-import * as React from "react";
+import "./Notes.sass";
+
+import { Icon } from "@iconify/react";
+import { type FC, useState } from "react";
+import { FormattedMessage } from "react-intl";
+
+import { useKeyPress } from "../../../hooks";
 import { API } from "../../types";
 import { Data, defaultData } from "./data";
 import Input from "./Input";
-import ReactMarkdown from "react-markdown";
-import { Icon } from "@iconify/react";
-import { FormattedMessage } from "react-intl";
-import { useKeyPress } from "../../../hooks";
-import "./Notes.sass";
+import SimpleMarkdown from "./SimpleMarkdown";
 
-const Notes: React.FC<API<Data>> = ({ data = defaultData, setData }) => {
-  const [isEditing, setIsEditing] = React.useState(false);
+const Notes: FC<API<Data>> = ({ data = defaultData, setData }) => {
+  const [isEditing, setIsEditing] = useState(false);
 
   const keyBind = data.keyBind ?? "N";
   useKeyPress(
@@ -39,7 +41,7 @@ const Notes: React.FC<API<Data>> = ({ data = defaultData, setData }) => {
           >
             {data.notes[0].contents ? (
               data.markdownEnabled ? (
-                <ReactMarkdown>{data.notes[0].contents}</ReactMarkdown>
+                <SimpleMarkdown>{data.notes[0].contents}</SimpleMarkdown>
               ) : (
                 data.notes[0].contents
               )

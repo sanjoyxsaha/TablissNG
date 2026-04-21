@@ -1,8 +1,9 @@
 import { FC } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
+
+import { pluginMessages } from "../../../locales/messages";
 import LocationInput from "./LocationInput";
 import { defaultData, Props } from "./types";
-import { pluginMessages } from "../../../locales/messages";
 
 const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => {
   const intl = useIntl();

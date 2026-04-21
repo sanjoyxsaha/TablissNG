@@ -1,10 +1,11 @@
-import * as React from "react";
 import { format } from "date-fns";
-import { defaultData, Props } from "./types";
-import { getPicture } from "./api";
-import BaseBackground from "../base/BaseBackground";
+import { type FC, useCallback, useEffect, useRef, useState } from "react";
+
 import { db } from "../../../db/state";
 import { useValue } from "../../../lib/db/react";
+import BaseBackground from "../base/BaseBackground";
+import { getPicture } from "./api";
+import { defaultData, Props } from "./types";
 
 const isDirectVideo = (url: string) => /\.(mp4|webm|ogg)(\?.*)?$/i.test(url);
 
@@ -20,18 +21,13 @@ const isCacheFresh = (
   return cachedDate === format(new Date(), "yyyy-MM-dd");
 };
 
-const Apod: React.FC<Props> = ({
-  cache,
-  data = defaultData,
-  loader,
-  setCache,
-}) => {
-  const [picture, setPicture] = React.useState(cache);
-  const mounted = React.useRef(false);
+const Apod: FC<Props> = ({ cache, data = defaultData, loader, setCache }) => {
+  const [picture, setPicture] = useState(cache);
+  const mounted = useRef(false);
   const background = useValue(db, "background");
   const { scale = true, position } = background.display;
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isCacheFresh(cache, data)) return;
     const isUpdate = mounted.current;
     getPicture(data, loader).then((result) => {
@@ -41,7 +37,7 @@ const Apod: React.FC<Props> = ({
     mounted.current = true;
   }, [data.customDate, data.date]);
 
-  const extractYouTubeId = React.useCallback((url: string): string | null => {
+  const extractYouTubeId = useCallback((url: string): string | null => {
     const match = url.match(
       /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/,
     );

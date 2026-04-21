@@ -1,8 +1,9 @@
-import * as React from "react";
+import type { FC } from "react";
 import { FormattedMessage } from "react-intl";
+
 import { defaultData, Props } from "./types";
 
-const IpInfoSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
+const IpInfoSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="IpInfoSettings">
     <label>
       <input

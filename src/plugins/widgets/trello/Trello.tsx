@@ -1,12 +1,13 @@
-import { FC, useEffect } from "react";
-import { Props, List, defaultCache, TrelloSession } from "./types";
 import "./Trello.sass";
 
+import { FC, useEffect } from "react";
+import { FormattedMessage } from "react-intl";
+
+import useAuth from "../../../hooks/useAuth";
+import { trelloAuthStore } from "./stores/trelloAuthStore";
+import { defaultCache, List, Props, TrelloSession } from "./types";
 import DisplayList from "./ui/DisplayList/DisplayList";
 import { getItems } from "./utils/api";
-import { trelloAuthStore } from "./stores/trelloAuthStore";
-import useAuth from "../../../hooks/useAuth";
-import { FormattedMessage } from "react-intl";
 
 const Trello: FC<Props> = ({ cache = defaultCache, setCache }) => {
   const { authStatus, getSession } = useAuth<TrelloSession>(

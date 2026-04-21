@@ -1,21 +1,23 @@
 import { FC, useMemo } from "react";
 import { FormattedMessage } from "react-intl";
+
 import { useSavedReducer } from "../../../hooks";
-import Input from "./Input";
 import {
   addLink,
+  importLinks,
   removeLink,
   reorderLink,
   updateLink,
-  importLinks,
 } from "./actions";
-import { reducer } from "./reducer";
-import { Data, Link, Props, defaultData } from "./types";
 import ImportBookmarks from "./ImportBookmarks";
+import Input from "./Input";
+import { reducer } from "./reducer";
+import { Data, defaultData, Link, Props } from "./types";
 
 const LinksSettings: FC<Props> = ({
   data = defaultData,
   setData,
+  cache,
   setCache,
 }) => {
   const saveLinks = (links: Link[]) => setData({ ...data, links });
@@ -150,8 +152,8 @@ const LinksSettings: FC<Props> = ({
         const originalIndex = data.links.findIndex((l) => l.id === link.id);
         return (
           <Input
-            {...link}
             key={link.id}
+            {...link}
             number={index + 1}
             onChange={(values) =>
               dispatch(updateLink(originalIndex, { ...link, ...values }))
@@ -167,6 +169,7 @@ const LinksSettings: FC<Props> = ({
                 : undefined
             }
             onRemove={() => dispatch(removeLink(originalIndex))}
+            cache={cache}
             setCache={setCache}
           />
         );

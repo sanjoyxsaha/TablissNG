@@ -1,11 +1,12 @@
-import * as React from "react";
-import { FormattedMessage, defineMessages, useIntl } from "react-intl";
+import { type FC } from "react";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+
+import { backgroundMessages } from "../../../locales/messages";
 import { DebounceInput } from "../../shared";
+import BaseSettings from "../base/BaseSettings";
+import Select from "./Select/Select";
 import topics from "./topics.json";
 import { defaultData, Props } from "./types";
-import { backgroundMessages } from "../../../locales/messages";
-import Select from "react-dropdown-select";
-import BaseSettings from "../base/BaseSettings";
 
 const messages = defineMessages({
   searchTermPlaceholder: {
@@ -20,7 +21,7 @@ const messages = defineMessages({
   },
 });
 
-const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => {
+const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => {
   const intl = useIntl();
   return (
     <div className="UnsplashSettings">
@@ -95,52 +96,15 @@ const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => {
                 topics: selected.map((item) => item.value),
               });
             }}
-            multi
             searchable
             dropdownHeight="300px"
-            style={{
-              width: "100%",
-              marginTop: "0.5em",
-              borderRadius: "0.2em",
-            }}
-            contentRenderer={({ props }) => {
-              if (props.values.length === 0) {
-                return (
-                  <div>
-                    <FormattedMessage
-                      id="backgrounds.unsplash.topics.placeholder"
-                      defaultMessage="Select topics..."
-                      description="Placeholder text for empty topic selection"
-                    />
-                  </div>
-                );
-              }
-              return (
-                <div
-                  style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    gap: "0.25em",
-                    padding: "0.25em",
-                  }}
-                >
-                  {props.values.map((item: any) => (
-                    <span
-                      key={item.value}
-                      style={{
-                        background: "var(--accent-color)",
-                        color: "var(--text-on-primary)",
-                        padding: "2px 8px",
-                        borderRadius: "1em",
-                        fontSize: "0.9em",
-                      }}
-                    >
-                      {item.label}
-                    </span>
-                  ))}
-                </div>
-              );
-            }}
+            placeholder={intl.formatMessage({
+              id: "backgrounds.unsplash.topics.placeholder",
+              defaultMessage: "Select topics...",
+              description:
+                "Placeholder text for the unsplash topics multi-select input",
+            })}
+            style={{ marginTop: "0.5em" }}
           />
           <i>
             <FormattedMessage

@@ -1,10 +1,11 @@
-import * as React from "react";
+import type { FC } from "react";
 import { FormattedMessage } from "react-intl";
+
 import { DebounceInput } from "../../shared";
 import { defaultData, Props } from "./types";
 
-const GitHubSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
-  <div className="MessageSettings">
+const GitHubSettings: FC<Props> = ({ data = defaultData, setData }) => (
+  <div className="GitHubSettings">
     <label>
       <FormattedMessage
         id="plugins.github.username"
@@ -118,5 +119,4 @@ const GitHubSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
     </label>
   </div>
 );
-
 export default GitHubSettings;

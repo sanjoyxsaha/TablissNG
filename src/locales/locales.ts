@@ -1,4 +1,5 @@
 import { pick } from "in-browser-language";
+
 import extractedMessages from "./extractedMessages/messages.json";
 import {
   localeAliases,

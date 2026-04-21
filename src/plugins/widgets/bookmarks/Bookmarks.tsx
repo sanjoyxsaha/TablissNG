@@ -1,11 +1,13 @@
-import { FC, useEffect, useState } from "react";
-import { defaultData, Props } from "./types";
 import "./Bookmarks.sass";
 import "../links/Links.sass";
+
+import { FC, useEffect, useState } from "react";
+
 import Icon from "../../../views/shared/icons/Icon";
-import { BookmarkTreeNode } from "./types";
-import { cleanTitle, truncateText } from "../topSites/TopSites";
 import { Display } from "../links/Display";
+import { cleanTitle, truncateText } from "../topSites/TopSites";
+import { defaultData, Props } from "./types";
+import { BookmarkTreeNode } from "./types";
 
 type NodeProps = {
   node: BookmarkTreeNode;

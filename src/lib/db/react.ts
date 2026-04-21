@@ -1,4 +1,5 @@
-import { useSyncExternalStore, useCallback, useState, useEffect } from "react";
+import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
+
 import * as DB from "./db";
 
 /** Use a value from the database. */

@@ -1,15 +1,12 @@
-import * as React from "react";
+import "./Quote.sass";
+
+import type { FC } from "react";
+
 import { useCachedEffect } from "../../../hooks";
 import { getQuote } from "./api";
-import "./Quote.sass";
 import { defaultData, Props } from "./types";
 
-const Quote: React.FC<Props> = ({
-  cache,
-  data = defaultData,
-  setCache,
-  loader,
-}) => {
+const Quote: FC<Props> = ({ cache, data = defaultData, setCache, loader }) => {
   useCachedEffect(
     () => {
       getQuote(loader, data.category ?? "quotable").then(setCache);

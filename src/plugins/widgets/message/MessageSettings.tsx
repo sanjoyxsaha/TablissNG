@@ -1,6 +1,7 @@
 import { FC } from "react";
-import { FormattedMessage, useIntl, defineMessages } from "react-intl";
-import { Props, defaultData } from "./types";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+
+import { defaultData, Props } from "./types";
 
 const messages = defineMessages({
   messagePlaceholder: {

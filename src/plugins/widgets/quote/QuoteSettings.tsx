@@ -1,11 +1,12 @@
-import * as React from "react";
+import type { FC } from "react";
 // import categories from "./categories";
 import { FormattedMessage } from "react-intl";
-import { pluginMessages, timingMessages } from "../../../locales/messages";
-import { MINUTES, HOURS } from "../../../utils";
-import { Props, defaultData } from "./types";
 
-const QuoteSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
+import { pluginMessages, timingMessages } from "../../../locales/messages";
+import { HOURS, MINUTES } from "../../../utils";
+import { defaultData, Props } from "./types";
+
+const QuoteSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="QuoteSettings">
     {/* <h5><FormattedMessage
           id="plugins.quotes.dailyQuotes"

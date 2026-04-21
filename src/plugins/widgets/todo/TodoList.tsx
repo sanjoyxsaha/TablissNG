@@ -1,9 +1,10 @@
+import "./TodoList.sass";
+
+import type { DragEvent } from "react";
 import { FC, useRef, useState } from "react";
-import * as React from "react";
 
 import { State } from "./reducer";
 import TodoItem from "./TodoItem";
-import "./TodoList.sass";
 
 interface Props {
   items: State;
@@ -36,7 +37,7 @@ const TodoList: FC<Props> = ({
     dragItemId.current = id;
   };
 
-  const handleDragOver = (e: React.DragEvent, id: string) => {
+  const handleDragOver = (e: DragEvent, id: string) => {
     e.preventDefault();
     if (dragItemId.current === id) {
       setDragOverId(null);
@@ -48,7 +49,7 @@ const TodoList: FC<Props> = ({
     setDragPosition(e.clientY < midY ? "above" : "below");
   };
 
-  const handleDrop = (e: React.DragEvent, targetId: string) => {
+  const handleDrop = (e: DragEvent, targetId: string) => {
     e.preventDefault();
     const fromId = dragItemId.current;
     if (!fromId || fromId === targetId) {

@@ -5,14 +5,14 @@ This guide covers how to add a new language, update existing translations, and m
 ## Quick Start
 
 1. Install dependencies:
-   `npm install`
+   `pnpm install`
 2. Sync extracted messages into locale files:
-   `npm run translations`
+   `pnpm run translations`
 3. Edit your language file in `src/locales/lang`.
 4. Verify status:
-   `npm run translations:status -- <lang>`
+   `pnpm run translations:status -- <lang>`
 5. Run app locally to test:
-   `npm run dev`
+   `pnpm run dev`
 
 ## Where Files Live
 
@@ -24,40 +24,40 @@ This guide covers how to add a new language, update existing translations, and m
 ## Commands
 
 - Sync/extract all messages:
-  `npm run translations`
+  `pnpm run translations`
 - Show status for all locales:
-  `npm run translations:status`
+  `pnpm run translations:status`
 - Show status for one locale:
-  `npm run translations:status -- fr`
+  `pnpm run translations:status -- fr`
 - Compile stripped/minified locale artifacts for production:
-  `npm run translations:compile`
+  `pnpm run translations:compile`
 - Create a new locale file:
-  `npm run translations:create -- de-AT`
+  `pnpm run translations:create -- de-AT`
 - Migrate renamed keys (all locales):
-  `npm run translations:migrate -- old.id=new.id`
+  `pnpm run translations:migrate -- old.id=new.id`
 - Migrate renamed keys (one locale):
-  `npm run translations:migrate -- es old.id=new.id`
+  `pnpm run translations:migrate -- es old.id=new.id`
 
 You can pass multiple migration mappings in one command:
 
-`npm run translations:migrate -- old.one=new.one old.two=new.two`
+`pnpm run translations:migrate -- old.one=new.one old.two=new.two`
 
 ## Adding a New Language
 
 1. Create locale file from extracted defaults:
-   `npm run translations:create -- <lang>`
+   `pnpm run translations:create -- <lang>`
 2. Add locale metadata in `src/locales/registry.ts`.
 3. Ensure locale aliases are correct in `src/locales/registry.ts` if needed (example: `zh` -> `zh-CN`).
 4. Translate values in `src/locales/lang/<lang>.json`.
-5. Run `npm run translations` to normalize and sort keys.
-6. Check progress with `npm run translations:status -- <lang>`.
+5. Run `pnpm run translations` to normalize and sort keys.
+6. Check progress with `pnpm run translations:status -- <lang>`.
 
 ## Updating Existing Translations
 
-1. Run `npm run translations`.
+1. Run `pnpm run translations`.
 2. Edit target locale files in `src/locales/lang`.
-3. Re-run `npm run translations`.
-4. Verify with `npm run translations:status -- <lang>`.
+3. Re-run `pnpm run translations`.
+4. Verify with `pnpm run translations:status -- <lang>`.
 
 ## Migrating Renamed Keys
 
@@ -65,11 +65,11 @@ When IDs are renamed in code, preserve existing translated values with the migra
 
 Example:
 
-`npm run translations:migrate -- plugins.github.month.jan=time.month.short.jan`
+`pnpm run translations:migrate -- plugins.github.month.jan=time.month.short.jan`
 
 Then run:
 
-`npm run translations`
+`pnpm run translations`
 
 This updates locale files to the new IDs and keeps extracted files in sync.
 
@@ -81,4 +81,4 @@ Example:
 
 If `widgets` is in `whitelist_fr.json`, French keeps the English word "widgets".
 
-Production builds automatically run `npm run translations:compile` and load compiled locale artifacts.
+Production builds automatically run `pnpm run translations:compile` and load compiled locale artifacts.

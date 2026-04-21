@@ -1,11 +1,12 @@
+import type { FC } from "react";
 import { useMemo } from "react";
-import * as React from "react";
-import { FormattedMessage, defineMessages, useIntl } from "react-intl";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+
 import { setBackground } from "../../db/action";
 import { BackgroundDisplay, BackgroundPosition, db } from "../../db/state";
 import { useKey } from "../../lib/db/react";
-import { backgroundConfigs, getConfig } from "../../plugins";
 import { sectionMessages } from "../../locales/messages";
+import { backgroundConfigs, getConfig } from "../../plugins";
 import Plugin from "../shared/Plugin";
 import ToggleSection from "../shared/ToggleSection";
 
@@ -22,7 +23,7 @@ const messages = defineMessages({
   },
 });
 
-const Background: React.FC = () => {
+const Background: FC = () => {
   const [data, setData] = useKey(db, "background");
   const intl = useIntl();
   const plugin = getConfig(data.key);

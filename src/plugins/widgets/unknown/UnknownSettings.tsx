@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { FormattedMessage } from "react-intl";
+
 import { API } from "../../types";
 
 const UnknownSettings: FC<API> = ({ data }) => {

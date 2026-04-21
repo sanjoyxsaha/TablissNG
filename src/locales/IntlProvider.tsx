@@ -1,22 +1,22 @@
-import * as React from "react";
+import { type FC, type PropsWithChildren, useEffect, useState } from "react";
 import { IntlProvider as ReactIntlProvider } from "react-intl";
+
 import { db } from "../db/state";
 import { useValue } from "../lib/db/react";
 import {
   baseMessages,
   loadMessages,
-  resolveLocale,
   type LocaleMessages,
+  resolveLocale,
 } from "./locales";
 
 const defaultMessages: LocaleMessages = DEV ? {} : baseMessages;
 
-const IntlProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
+const IntlProvider: FC<PropsWithChildren> = ({ children }) => {
   const locale = useValue(db, "locale");
-  const [messages, setMessages] =
-    React.useState<LocaleMessages>(defaultMessages);
+  const [messages, setMessages] = useState<LocaleMessages>(defaultMessages);
 
-  React.useEffect(() => {
+  useEffect(() => {
     let cancelled = false;
     void loadMessages(locale).then((nextMessages) => {
       if (!cancelled) {

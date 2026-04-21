@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { FormattedMessage } from "react-intl";
-import { Props, defaultData } from "./types";
+
+import { defaultData, Props } from "./types";
 
 const TopSitesSettings: FC<Props> = ({ data = defaultData, setData }) => {
   if (!setData) return null;

@@ -1,11 +1,12 @@
-import * as React from "react";
-import { FormattedMessage, defineMessages, useIntl } from "react-intl";
+import type { FC } from "react";
+import { defineMessages, FormattedMessage, useIntl } from "react-intl";
+
 import { db, FaviconMode } from "../../db/state";
-import { useKey } from "../../lib/db/react";
-import TimeZoneInput from "../shared/timeZone/TimeZoneInput";
 import { useSystemTheme } from "../../hooks";
-import { Icon, IconButton } from "../shared";
+import { useKey } from "../../lib/db/react";
 import { localeOptions } from "../../locales/registry";
+import { Icon, IconButton } from "../shared";
+import TimeZoneInput from "../shared/timeZone/TimeZoneInput";
 
 const messages = defineMessages({
   faviconErrorSize: {
@@ -31,6 +32,10 @@ const positions = [
     icon: "arrow-up-left",
   },
   {
+    value: "topCentre",
+    icon: "arrow-up",
+  },
+  {
     value: "topRight",
     icon: "arrow-up-right",
   },
@@ -39,12 +44,16 @@ const positions = [
     icon: "arrow-down-left",
   },
   {
+    value: "bottomCentre",
+    icon: "arrow-down",
+  },
+  {
     value: "bottomRight",
     icon: "arrow-down-right",
   },
 ] as const;
 
-const System: React.FC = () => {
+const System: FC = () => {
   const intl = useIntl();
   const [locale, setLocale] = useKey(db, "locale");
   const [timeZone, setTimeZone] = useKey(db, "timeZone");
@@ -329,7 +338,7 @@ const System: React.FC = () => {
           />
         </label>
         <div className="PositionInput">
-          <div className="u-grid-2x2-compact">
+          <div className="u-grid-3x2-compact">
             {positions.map((position) => (
               <IconButton
                 key={position.value}
@@ -361,8 +370,8 @@ const System: React.FC = () => {
         <span>
           <FormattedMessage
             id="settings.hideIcon"
-            defaultMessage="Hide Settings Icon"
-            description="Hide settings icon toggle label"
+            defaultMessage="Hide Settings Toolbar"
+            description="Hide settings toolbar toggle label"
           />
         </span>
         <input

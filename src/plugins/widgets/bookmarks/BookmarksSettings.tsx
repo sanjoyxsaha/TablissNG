@@ -1,6 +1,6 @@
-import { FC, useEffect, useState } from "react";
-import * as React from "react";
-import { defaultData, Props, Data } from "./types";
+import { type FC, type JSX, useEffect, useState } from "react";
+
+import { Data, defaultData, Props } from "./types";
 import { BookmarkTreeNode } from "./types";
 
 const BookmarksSettings: FC<Props> = ({ data = defaultData, setData }) => {
@@ -29,7 +29,7 @@ const BookmarksSettings: FC<Props> = ({ data = defaultData, setData }) => {
     );
   }
 
-  const items: React.JSX.Element[] = [];
+  const items: JSX.Element[] = [];
 
   const descendTree = (tree: BookmarkTreeNode | undefined, pad: string) => {
     if (!tree || tree.url) {

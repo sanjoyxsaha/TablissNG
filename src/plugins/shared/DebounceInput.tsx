@@ -1,9 +1,10 @@
-import { FC, useState, useEffect } from "react";
-import * as React from "react";
+import type { InputHTMLAttributes } from "react";
+import { FC, useEffect, useState } from "react";
+
 import { useDebounce } from "../../hooks";
 
 interface Props extends Omit<
-  React.InputHTMLAttributes<HTMLInputElement>,
+  InputHTMLAttributes<HTMLInputElement>,
   "onChange"
 > {
   onChange: (value: string) => void;
