@@ -119,22 +119,8 @@ const WidgetDisplay: FC<Props> = ({ display, onChange }) => {
           onChange={(event) => onChange({ scale: Number(event.target.value) })}
         />
         <datalist id="scale-markers">
-          {/* <option value="0.5" label="-0.5" /> */}
-          <option value="1">
-            <FormattedMessage
-              id="settings.default"
-              defaultMessage="Default"
-              description="Default option label"
-            />
-          </option>
-          <option value="2">
-            <FormattedMessage
-              id="settings.double"
-              defaultMessage="Double"
-              description="Double option label"
-            />
-          </option>
-          {/* <option value="1.5" label="+0.5" /> */}
+          <option value="1" />
+          <option value="2" />
         </datalist>
       </label>
 

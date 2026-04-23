@@ -135,7 +135,7 @@ const Root: FC = () => {
         if (cacheSub) cacheSub();
       });
     };
-  }, []);
+  }, [intl]);
 
   const { errors, settings, toggleErrors } = useContext(UiContext);
 
