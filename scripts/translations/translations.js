@@ -39,20 +39,18 @@ Commands:
 	compile             Compile stripped/minified locale files for production build
 	create <lang>       Create a new language file with default English values
 	migrate [lang] --map <mapping...>
-									Migrate renamed IDs in language/whitelist files.
-									Mapping format: --map old.id=new.id (repeatable)
-	help                Show this help message
-
+					Migrate renamed IDs in language/whitelist files.
+					Mapping format: --map old.id=new.id (repeatable)
 Examples:
-	node scripts/translations/translations.js              # sync all languages
-	node scripts/translations/translations.js --dry-run    # preview all changes
-	node scripts/translations/translations.js --quiet      # summary-only style output
-	node scripts/translations/translations.js status       # overview of all languages
-	node scripts/translations/translations.js status fr    # untranslated keys in French
-	node scripts/translations/translations.js compile      # write production locale artifacts
-	node scripts/translations/translations.js create de-AT # create Austrian German
-	node scripts/translations/translations.js migrate es --map plugins.github.month.jan=time.month.short.jan
-	node scripts/translations/translations.js --dry-run migrate --map plugins.github.months=time.month`);
+			node scripts/translations/translations.js              # sync all languages
+			node scripts/translations/translations.js --dry-run    # preview all changes
+			node scripts/translations/translations.js --quiet      # summary-only style output
+			node scripts/translations/translations.js status       # overview of all languages
+			node scripts/translations/translations.js status fr    # untranslated keys in French
+			node scripts/translations/translations.js compile      # write production locale artifacts
+			node scripts/translations/translations.js create de-AT # create Austrian German
+			node scripts/translations/translations.js migrate es --map plugins.github.month.jan=time.month.short.jan
+			node scripts/translations/translations.js --dry-run migrate --map plugins.github.months=time.month`);
 }
 
 const { options, args } = parseGlobalOptions(process.argv.slice(2));

@@ -51,7 +51,7 @@ export const localeOptions: LocaleOption[] = [
   { code: "sv", title: "Swedish", label: "Svenska" },
   { code: "ta", title: "Tamil", label: "தமிழ்" },
   { code: "th", title: "Thai", label: "ไทย" },
-  { code: "tok", title: "toki pona", label: "Toki Pona" },
+  { code: "tok", title: "Toki Pona", label: "toki pona" },
   { code: "tr", title: "Turkish", label: "Türkçe" },
   { code: "uk", title: "Ukrainian", label: "Українська" },
   { code: "vi", title: "Vietnamese", label: "Tiếng Việt" },
