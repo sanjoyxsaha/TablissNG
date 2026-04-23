@@ -256,7 +256,7 @@
   "plugins.links.input.githubIssue": "этот текст на GitHub",
   "plugins.links.input.icon": "Иконка",
   "plugins.links.input.iconHeight": "Высота иконки",
-  "plugins.links.input.iconifyHelp": "Введите идентификатор Iconify для значка, который вы хотите использовать в ссылках. Для получения более подробной информации см. ",
+  "plugins.links.input.iconifyHelp": "Введите идентификатор Iconify для значка, который вы хотите использовать в ссылках. Для получения более подробной информации см.",
   "plugins.links.input.iconifyIcons": "Иконки Iconify",
   "plugins.links.input.iconSize": "Размер иконки",
   "plugins.links.input.iconWidth": "Ширина иконки",
