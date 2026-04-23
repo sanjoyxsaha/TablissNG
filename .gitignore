@@ -3,3 +3,7 @@
 .env
 .DS_Store
 tsconfig.tsbuildinfo
+/TablissNG-Xcode-Project/build
+/TablissNG-Xcode-Project/**/*.xcuserstate
+/TablissNG-Xcode-Project/**/*.xcodeproj/xcuserdata
+/TablissNG-Xcode-Project/**/*.xcworkspace/xcuserdata

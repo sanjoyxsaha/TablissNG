@@ -33,6 +33,7 @@
     "test": "tsc && jest",
     "translations": "node ./scripts/translations.js",
     "sign:firefox": "node ./scripts/firefox-sign-manual.js",
+    "build:safari-dmg": "node ./scripts/build-safari-dmg.js",
     "deps:check": "pnpm dlx npm-check",
     "deps:update": "pnpm dlx npm-check -u",
     "typecheck": "tsc",

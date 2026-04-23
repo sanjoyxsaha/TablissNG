@@ -26,6 +26,7 @@ const config = {
     publicPath: isProduction ? "./" : "/",
     filename: isWeb ? "[name].[contenthash:12].js" : "[name].js",
     cssFilename: isWeb ? "[name].[contenthash:12].css" : "[name].css",
+    cssChunkFilename: isWeb ? "[name].[contenthash:12].css" : "[name].css",
     clean: true,
   },
   mode: isProduction ? "production" : "development",
@@ -137,6 +138,7 @@ const config = {
     warnings: true,
   },
   optimization: {
+    ...(!isWeb && { chunkIds: "named" }),
     splitChunks: {
       chunks: "all",
       cacheGroups: {
