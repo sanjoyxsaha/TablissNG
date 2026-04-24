@@ -5,7 +5,7 @@ const { runMigrate, parseMigrateArgs } = require("./commands/migrate");
 const { runCompile } = require("./commands/compile");
 
 function parseGlobalOptions(argv) {
-  const options = { dryRun: false, quiet: false };
+  const options = { dryRun: false, quiet: false, check: false };
   const args = [];
 
   for (const arg of argv) {
@@ -15,6 +15,11 @@ function parseGlobalOptions(argv) {
     }
     if (arg === "--quiet") {
       options.quiet = true;
+      continue;
+    }
+    if (arg === "--check") {
+      options.check = true;
+      options.dryRun = true;
       continue;
     }
     args.push(arg);
@@ -32,6 +37,7 @@ function printUsage() {
 Global Options:
 	--dry-run           Preview changes without writing to files
 	--quiet             Minimize non-essential output
+	--check             Check if translations are out of date and exit with error code (sync only, implies --dry-run)
 
 Commands:
 	(no command)        Extract messages and sync all language files (default)
@@ -42,15 +48,16 @@ Commands:
 					Migrate renamed IDs in language/whitelist files.
 					Mapping format: --map old.id=new.id (repeatable)
 Examples:
-			node scripts/translations/translations.js              # sync all languages
-			node scripts/translations/translations.js --dry-run    # preview all changes
-			node scripts/translations/translations.js --quiet      # summary-only style output
-			node scripts/translations/translations.js status       # overview of all languages
-			node scripts/translations/translations.js status fr    # untranslated keys in French
-			node scripts/translations/translations.js compile      # write production locale artifacts
-			node scripts/translations/translations.js create de-AT # create Austrian German
-			node scripts/translations/translations.js migrate es --map plugins.github.month.jan=time.month.short.jan
-			node scripts/translations/translations.js --dry-run migrate --map plugins.github.months=time.month`);
+		node scripts/translations/translations.js              # sync all languages
+		node scripts/translations/translations.js --dry-run    # preview all changes
+		node scripts/translations/translations.js --quiet      # summary-only style output
+		node scripts/translations/translations.js --check      # check if translations are up to date (mostly for CI)
+		node scripts/translations/translations.js status       # overview of all languages
+		node scripts/translations/translations.js status fr    # untranslated keys in French
+		node scripts/translations/translations.js compile      # write production locale artifacts
+		node scripts/translations/translations.js create de-AT # create Austrian German
+		node scripts/translations/translations.js migrate es --map plugins.github.month.jan=time.month.short.jan
+		node scripts/translations/translations.js --dry-run migrate --map plugins.github.months=time.month`);
 }
 
 const { options, args } = parseGlobalOptions(process.argv.slice(2));
@@ -62,10 +69,23 @@ if (context.dryRun && !context.quiet) {
 
 const [command, ...commandArgs] = args;
 
+if (context.check && command && command !== "sync") {
+  console.error("✗ --check option is only supported with the sync command.");
+  process.exit(1);
+}
+
 switch (command) {
   case undefined:
   case "sync":
-    runSync(context);
+    {
+      const hasChanges = runSync(context);
+      if (context.check && hasChanges) {
+        console.error(
+          "✗ Translations are out of date. Run 'pnpm run translations' to update them.",
+        );
+        process.exit(1);
+      }
+    }
     break;
   case "status":
     runStatus(commandArgs[0], context);

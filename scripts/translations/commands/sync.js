@@ -103,6 +103,7 @@ function runSync(context) {
   let totalAdded = 0;
   let totalUpdated = 0;
   let totalRemoved = 0;
+  let hasChanges = false;
 
   for (const languageFile of languageFiles) {
     const languagePath = path.join(localesDir, languageFile);
@@ -125,6 +126,7 @@ function runSync(context) {
       );
     }
     if (mergedString !== existingString) {
+      hasChanges = true;
       if (!context.dryRun) {
         fs.writeFileSync(languagePath, mergedString);
       }
@@ -159,6 +161,8 @@ function runSync(context) {
       context,
     ),
   );
+
+  return hasChanges;
 }
 
 module.exports = { runSync };
