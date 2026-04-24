@@ -19,7 +19,6 @@ export default defineConfig(
   formatjs.configs.recommended,
   {
     plugins: {
-      formatjs,
       "simple-import-sort": simpleImportSort,
       local: {
         rules: {

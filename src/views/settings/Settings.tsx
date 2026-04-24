@@ -45,11 +45,12 @@ const messages = defineMessages({
     defaultMessage: "Star BookCatKid/tablissNG on GitHub",
     description: "ARIA label for the GitHub star button",
   },
-  settingsLinks: {
-    id: "settings.links.list",
-    defaultMessage: "{import}, {export} or {reset} your settings",
+  settingsImportExportReset: {
+    id: "settings.importExportReset",
+    defaultMessage:
+      "<import>Import</import>, <export>export</export> or <reset>reset</reset> your settings",
     description:
-      "List of links (import, export, reset) at the bottom of settings",
+      "Links for import/export/reset at the bottom of settings. Uses XML-like tags to style each action word as a clickable link.",
   },
 });
 
@@ -208,35 +209,11 @@ const Settings: FC = () => {
         <System />
         <p style={{ marginBottom: "2rem" }}>
           <FormattedMessage
-            {...messages.settingsLinks}
+            {...messages.settingsImportExportReset}
             values={{
-              import: (
-                <a onClick={handleImport}>
-                  <FormattedMessage
-                    id="settings.import"
-                    defaultMessage="Import"
-                    description="Import title"
-                  />
-                </a>
-              ),
-              export: (
-                <a onClick={handleExport}>
-                  <FormattedMessage
-                    id="settings.export"
-                    defaultMessage="export"
-                    description="Export title"
-                  />
-                </a>
-              ),
-              reset: (
-                <a onClick={handleReset}>
-                  <FormattedMessage
-                    id="settings.reset"
-                    defaultMessage="reset"
-                    description="Reset title"
-                  />
-                </a>
-              ),
+              import: (chunks) => <a onClick={handleImport}>{chunks}</a>,
+              export: (chunks) => <a onClick={handleExport}>{chunks}</a>,
+              reset: (chunks) => <a onClick={handleReset}>{chunks}</a>,
             }}
           />
         </p>

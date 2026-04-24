@@ -35,25 +35,17 @@ const StoreError: FC<Props> = ({ onClose }) => {
         <p>
           <FormattedMessage
             id="plugins.storageError3"
-            defaultMessage="If they do not return, the {supportGuideLink} covers the common causes and how to resolve them. Otherwise, create an issue at {githubLink} if you are still unable to solve the issue."
-            description="Third paragraph linking to the support guide and GitHub issues"
+            defaultMessage="If they do not return, the <guide>support guide</guide> covers the common causes and how to resolve them. Otherwise, create an issue at <github>GitHub</github> if you are still unable to solve the issue."
+            description="Third paragraph linking to the support guide and GitHub issues. Tags wrap clickable link text."
             values={{
-              supportGuideLink: (
+              guide: (chunks) => (
                 <a href="https://bookcatkid.github.io/TablissNG/docs/support/storage-errors">
-                  <FormattedMessage
-                    id="plugins.storageError.guide"
-                    defaultMessage="support guide"
-                    description="Link text for the support guide"
-                  />
+                  {chunks}
                 </a>
               ),
-              githubLink: (
+              github: (chunks) => (
                 <a href="https://github.com/BookCatKid/tablissNG/issues/new">
-                  <FormattedMessage
-                    id="plugins.storageError.github"
-                    defaultMessage="GitHub"
-                    description="Link text pointing to the GitHub issues repository"
-                  />
+                  {chunks}
                 </a>
               ),
             }}

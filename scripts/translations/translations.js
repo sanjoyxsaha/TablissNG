@@ -2,6 +2,7 @@ const { runSync } = require("./commands/sync");
 const { runStatus } = require("./commands/status");
 const { runCreate } = require("./commands/create");
 const { runMigrate, parseMigrateArgs } = require("./commands/migrate");
+const { runPurge, parsePurgeArgs } = require("./commands/purge");
 const { runCompile } = require("./commands/compile");
 
 function parseGlobalOptions(argv) {
@@ -47,6 +48,7 @@ Commands:
 	migrate [lang] --map <mapping...>
 					Migrate renamed IDs in language/whitelist files.
 					Mapping format: --map old.id=new.id (repeatable)
+	purge <key>      Purge a change key from all files so that it can be regenerated correctly.
 Examples:
 		node scripts/translations/translations.js              # sync all languages
 		node scripts/translations/translations.js --dry-run    # preview all changes
@@ -57,7 +59,8 @@ Examples:
 		node scripts/translations/translations.js compile      # write production locale artifacts
 		node scripts/translations/translations.js create de-AT # create Austrian German
 		node scripts/translations/translations.js migrate es --map plugins.github.month.jan=time.month.short.jan
-		node scripts/translations/translations.js --dry-run migrate --map plugins.github.months=time.month`);
+		node scripts/translations/translations.js --dry-run migrate --map plugins.github.months=time.month
+		node scripts/translations/translations.js purge settings.links.list`);
 }
 
 const { options, args } = parseGlobalOptions(process.argv.slice(2));
@@ -100,6 +103,12 @@ switch (command) {
     {
       const { targetLang, migrations } = parseMigrateArgs(commandArgs);
       runMigrate(targetLang, migrations, context);
+    }
+    break;
+  case "purge":
+    {
+      const { keyToPurge } = parsePurgeArgs(commandArgs);
+      runPurge(keyToPurge, context);
     }
     break;
   case "help":

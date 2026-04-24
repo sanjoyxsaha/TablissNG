@@ -16,6 +16,11 @@ const requireOptionValueRule = {
         if (node.name.type !== "JSXIdentifier") return;
         if (node.name.name !== "option") return;
 
+        const hasSpread = node.attributes.some(
+          (attr) => attr.type === "JSXSpreadAttribute",
+        );
+        if (hasSpread) return;
+
         const hasValue = node.attributes.some(
           (attr) => attr.type === "JSXAttribute" && attr.name.name === "value",
         );
