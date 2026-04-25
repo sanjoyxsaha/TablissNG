@@ -386,6 +386,7 @@
   "plugins.time.displaySeconds": "Shfaq sekondat",
   "plugins.time.displayTime": "Shfaq orën",
   "plugins.time.name": "Koha",
+  "plugins.time.showSeparator": "Show Separator",
   "plugins.timeTracker.compact": "Kompakt",
   "plugins.timeTracker.completionMessage": "Mesazhi i përfundimit",
   "plugins.timeTracker.day": "ditë",

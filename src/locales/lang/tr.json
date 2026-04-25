@@ -386,6 +386,7 @@
   "plugins.time.displaySeconds": "Saniyeleri göster",
   "plugins.time.displayTime": "Zamanı göster",
   "plugins.time.name": "Saat",
+  "plugins.time.showSeparator": "Show Separator",
   "plugins.timeTracker.compact": "Kompakt",
   "plugins.timeTracker.completionMessage": "Tamamlanma mesajı",
   "plugins.timeTracker.day": "gün",

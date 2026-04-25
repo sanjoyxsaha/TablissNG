@@ -386,6 +386,7 @@
   "plugins.time.displaySeconds": "Zobrazit sekundy",
   "plugins.time.displayTime": "Zobrazit čas",
   "plugins.time.name": "Čas",
+  "plugins.time.showSeparator": "Show Separator",
   "plugins.timeTracker.compact": "Kompaktní",
   "plugins.timeTracker.completionMessage": "Zpráva po dokončení",
   "plugins.timeTracker.day": "den",
