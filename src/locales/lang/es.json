@@ -250,7 +250,6 @@
   "plugins.links.input.customSvgHelp": "Escribe tu código SVG HTML personalizado encima para usar un icono en los enlaces. Para más detalle ver",
   "plugins.links.input.customSvgHtml": "Código SVG HTML personalizado",
   "plugins.links.input.customSvgHtmlLabel": "Código SVG HTML personalizado",
-  "plugins.links.input.docsPage": "the documentation",
   "plugins.links.input.feather": "Viñeta",
   "plugins.links.input.fromDuckDuckGo": "De DuckDuckGo",
   "plugins.links.input.fromFavicone": "De Favicone",

@@ -250,7 +250,6 @@
   "plugins.links.input.customSvgHelp": "Nhập mã SVG HTML tùy chỉnh ở trên để sử dụng biểu tượng trong liên kết. Xem thêm chi tiết tại",
   "plugins.links.input.customSvgHtml": "Mã SVG HTML tùy chỉnh",
   "plugins.links.input.customSvgHtmlLabel": "Mã SVG HTML tùy chỉnh",
-  "plugins.links.input.docsPage": "the documentation",
   "plugins.links.input.feather": "Feather",
   "plugins.links.input.fromDuckDuckGo": "Từ DuckDuckGo",
   "plugins.links.input.fromFavicone": "Từ Favicone",

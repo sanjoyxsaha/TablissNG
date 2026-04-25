@@ -250,7 +250,6 @@
   "plugins.links.input.customSvgHelp": "Bağlantılarınızda bir simge kullanmak için yukarıya özel SVG HTML kodunuzu girin. Daha ayrıntılı bilgi için bkz.",
   "plugins.links.input.customSvgHtml": "Özel SVG HTML",
   "plugins.links.input.customSvgHtmlLabel": "Özel SVG HTML",
-  "plugins.links.input.docsPage": "the documentation",
   "plugins.links.input.feather": "Feather",
   "plugins.links.input.fromDuckDuckGo": "DuckDuckGo'dan",
   "plugins.links.input.fromFavicone": "Favicone'dan",

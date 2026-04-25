@@ -250,7 +250,6 @@
   "plugins.links.input.customSvgHelp": "Gib deinen benutzerdefinierten SVG-HTML-Code oben ein, um ein Symbol in deinen Links zu verwenden. Weitere Informationen findest du unter",
   "plugins.links.input.customSvgHtml": "Benutzerdefiniertes SVG HTML",
   "plugins.links.input.customSvgHtmlLabel": "Benutzerdefiniertes SVG HTML",
-  "plugins.links.input.docsPage": "the documentation",
   "plugins.links.input.feather": "Feather",
   "plugins.links.input.fromDuckDuckGo": "Von DuckDuckGo",
   "plugins.links.input.fromFavicone": "Von Favicone",

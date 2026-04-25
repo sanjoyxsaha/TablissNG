@@ -250,7 +250,6 @@
   "plugins.links.input.customSvgHelp": "Zadejte vlastní SVG HTML kód výše pro použití ikony v odkazech. Více informací naleznete v",
   "plugins.links.input.customSvgHtml": "Vlastní SVG HTML",
   "plugins.links.input.customSvgHtmlLabel": "Vlastní SVG HTML",
-  "plugins.links.input.docsPage": "the documentation",
   "plugins.links.input.feather": "Feather",
   "plugins.links.input.fromDuckDuckGo": "Z DuckDuckGo",
   "plugins.links.input.fromFavicone": "Z Favicone",

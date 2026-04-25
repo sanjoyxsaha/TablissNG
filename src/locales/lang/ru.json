@@ -250,7 +250,6 @@
   "plugins.links.input.customSvgHelp": "Введите ваш пользовательский SVG HTML-код выше, чтобы использовать иконку в ваших ссылках. Для получения более подробной информации см.",
   "plugins.links.input.customSvgHtml": "Пользовательский SVG HTML",
   "plugins.links.input.customSvgHtmlLabel": "Пользовательский SVG HTML",
-  "plugins.links.input.docsPage": "the documentation",
   "plugins.links.input.feather": "Feather",
   "plugins.links.input.fromDuckDuckGo": "Из DuckDuckGo",
   "plugins.links.input.fromFavicone": "Из Favicone",

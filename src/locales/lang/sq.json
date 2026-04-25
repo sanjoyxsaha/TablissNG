@@ -250,7 +250,6 @@
   "plugins.links.input.customSvgHelp": "Vendos kodin HTML të SVG-së tënde për të përdorur një ikonë në link-et e tua. Për më shumë info shiko",
   "plugins.links.input.customSvgHtml": "HTML i SVG-së",
   "plugins.links.input.customSvgHtmlLabel": "HTML i SVG-së",
-  "plugins.links.input.docsPage": "the documentation",
   "plugins.links.input.feather": "Feather",
   "plugins.links.input.fromDuckDuckGo": "Nga DuckDuckGo",
   "plugins.links.input.fromFavicone": "Nga Favicone",
