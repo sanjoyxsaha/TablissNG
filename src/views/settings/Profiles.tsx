@@ -135,7 +135,7 @@ const Profiles: React.FC = () => {
                         className="button--icon"
                         onClick={() => startEditing(profile.id, profile.name)}
                         title={intl.formatMessage({
-                          id: "rename",
+                          id: "settings.profile.rename",
                           defaultMessage: "Rename",
                           description: "Title for button renaming a profile",
                         })}
@@ -146,7 +146,7 @@ const Profiles: React.FC = () => {
                         className="button--icon"
                         onClick={() => duplicateProfile(profile.id)}
                         title={intl.formatMessage({
-                          id: "duplicate",
+                          id: "settings.profile.duplicate",
                           defaultMessage: "Duplicate",
                           description: "Title for button duplicating a profile",
                         })}
@@ -158,7 +158,7 @@ const Profiles: React.FC = () => {
                           className="button--icon"
                           onClick={() => deleteProfile(profile.id)}
                           title={intl.formatMessage({
-                            id: "delete",
+                            id: "settings.profile.delete",
                             defaultMessage: "Delete",
                             description: "Title for button deleting a profile",
                           })}
@@ -190,7 +190,7 @@ const Profiles: React.FC = () => {
           />
           <button type="submit" className="button button--primary">
             <FormattedMessage
-              id="create"
+              id="settings.profile.create"
               defaultMessage="Create"
               description="Button for creating a new profile"
             />
