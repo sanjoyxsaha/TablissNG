@@ -40,7 +40,7 @@ This guide covers how to add a new language, update existing translations, and m
 
 You can pass multiple migration mappings in one command:
 
-`pnpm run translations:migrate --map old.one=new.one old.two=new.two`
+`pnpm run translations:migrate --map old.one=new.one --map old.two=new.two`
 
 ## Adding a New Language
 

@@ -66,7 +66,7 @@ const TimeZoneInput: FC<Props> = ({ timeZone, onChange }) => {
           </option>
         ))
       ) : (
-        <option value="" disabled>
+        <option value="loading" disabled>
           <FormattedMessage {...commonMessages.loading} />
         </option>
       )}

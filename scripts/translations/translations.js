@@ -45,10 +45,10 @@ Commands:
 	status [lang]       Show translation status for all or a specific language
 	compile             Compile stripped/minified locale files for production build
 	create <lang>       Create a new language file with default English values
-	migrate [lang] --map <mapping...>
+	migrate [lang] --map <mapping> [--map <mapping>...]
 					Migrate renamed IDs in language/whitelist files.
 					Mapping format: --map old.id=new.id (repeatable)
-	purge <key>      Purge a change key from all files so that it can be regenerated correctly.
+	purge <key>         Purge a change key from all files so that it can be regenerated correctly.
 Examples:
 		node scripts/translations/translations.js              # sync all languages
 		node scripts/translations/translations.js --dry-run    # preview all changes
@@ -59,7 +59,7 @@ Examples:
 		node scripts/translations/translations.js compile      # write production locale artifacts
 		node scripts/translations/translations.js create de-AT # create Austrian German
 		node scripts/translations/translations.js migrate es --map plugins.github.month.jan=time.month.short.jan
-		node scripts/translations/translations.js --dry-run migrate --map plugins.github.months=time.month
+		node scripts/translations/translations.js --dry-run migrate --map old.one=new.one --map old.two=new.two
 		node scripts/translations/translations.js purge settings.links.list`);
 }
 

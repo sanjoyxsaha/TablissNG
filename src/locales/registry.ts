@@ -68,4 +68,5 @@ export const translatableLocales = locales.filter((locale) => locale !== "en");
 
 export const localeAliases: Record<string, string> = {
   zh: "zh-CN",
+  kp: "ko-KP",
 };
