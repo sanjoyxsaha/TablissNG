@@ -45,6 +45,9 @@ function runStatus(targetLang, context) {
     ? [`${targetLang}.json`]
     : listLanguageFiles();
 
+  let aggregateTranslated = 0;
+  let aggregateTotal = 0;
+
   for (const languageFile of languageFiles) {
     const languagePath = path.join(localesDir, languageFile);
     if (!fs.existsSync(languagePath)) {
@@ -64,6 +67,9 @@ function runStatus(targetLang, context) {
     const translated = total - untranslated.length;
     const pct = total > 0 ? ((translated / total) * 100).toFixed(1) : "100.0";
 
+    aggregateTranslated += translated;
+    aggregateTotal += total;
+
     if (targetLang) {
       if (untranslated.length > 0 && !context.quiet) {
         console.log(`\nUntranslated keys (${untranslated.length}):`);
@@ -82,6 +88,13 @@ function runStatus(targetLang, context) {
 
     console.log(`${languageFile}: ${translated}/${total} (${pct}%) translated`);
   }
+
+  const aggregatePct = ((aggregateTranslated / aggregateTotal) * 100).toFixed(
+    1,
+  );
+  console.log(
+    `\nTotal: ${aggregateTranslated}/${aggregateTotal} (${aggregatePct}%) translated across ${languageFiles.length} languages`,
+  );
 }
 
 module.exports = { runStatus };
