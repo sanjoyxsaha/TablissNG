@@ -386,6 +386,7 @@
   "plugins.time.displaySeconds": "Показывать секунды",
   "plugins.time.displayTime": "Показывать время",
   "plugins.time.name": "Время",
+  "plugins.time.showSeparator": "Show Separator",
   "plugins.timeTracker.compact": "Компактный",
   "plugins.timeTracker.completionMessage": "Сообщение о завершении",
   "plugins.timeTracker.day": "день",

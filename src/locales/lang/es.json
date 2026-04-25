@@ -386,6 +386,7 @@
   "plugins.time.displaySeconds": "Mostrar los segundos",
   "plugins.time.displayTime": "Mostrar la fecha",
   "plugins.time.name": "Fecha",
+  "plugins.time.showSeparator": "Show Separator",
   "plugins.timeTracker.compact": "Compacto",
   "plugins.timeTracker.completionMessage": "Mensaje completado",
   "plugins.timeTracker.day": "día",
