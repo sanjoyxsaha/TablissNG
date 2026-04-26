@@ -1,16 +1,9 @@
 import { expect, type Page, test } from "@playwright/test";
 
-const fixtures = "e2e/fixtures";
+import { fixtures, selectBackground } from "../../../../e2e/helpers";
 
 async function selectMediaBackground(page: Page) {
-  await page.locator(".Overlay a").first().click();
-
-  await page
-    .locator("div", { has: page.locator("h2", { hasText: "Background" }) })
-    .locator("select.primary")
-    .first()
-    .selectOption("background/image");
-
+  await selectBackground(page, "background/image");
   await expect(page.locator('input[type="file"]')).toBeVisible();
 }
 
@@ -66,15 +59,12 @@ test.describe("Media Background", () => {
     await expect(page.locator(".media-count")).toHaveText(/1 media uploaded/);
 
     await page.locator("a.link", { hasText: "Expand" }).click();
-
     await page.locator('button[title="Remove media"]').first().click();
 
     await expect(page.locator(".media-count")).toHaveText(/0 media uploaded/);
   });
 
-  test("should show Expand/Collapse toggle for uploaded media", async ({
-    page,
-  }) => {
+  test("should toggle Expand/Collapse for uploaded media", async ({ page }) => {
     await selectMediaBackground(page);
     await page
       .locator('input[type="file"]')
@@ -120,9 +110,10 @@ test.describe("Media Background", () => {
     await expect(preview.locator("video")).toHaveAttribute("controls", "");
   });
 
-  test("should reject unsupported file types", async ({ page }) => {
+  test("should declare supported file types via accept attribute", async ({
+    page,
+  }) => {
     await selectMediaBackground(page);
-
     const fileInput = page.locator('input[type="file"]');
     await expect(fileInput).toHaveAttribute(
       "accept",
@@ -134,7 +125,6 @@ test.describe("Media Background", () => {
     page,
   }) => {
     await selectMediaBackground(page);
-
     const sortSelect = page
       .locator("label", { hasText: "Sort order" })
       .locator("select");
@@ -167,5 +157,31 @@ test.describe("Media Background", () => {
     await expect(page.locator(".media-count")).toHaveText(/0 media uploaded/);
 
     await expect(page.locator(".preview")).toBeHidden();
+  });
+
+  test("should append additional media without replacing existing ones", async ({
+    page,
+  }) => {
+    await selectMediaBackground(page);
+    await page
+      .locator('input[type="file"]')
+      .setInputFiles(`${fixtures}/test-image.png`);
+    await expect(page.locator(".media-count")).toHaveText(/1 media uploaded/);
+
+    await page
+      .locator('input[type="file"]')
+      .setInputFiles(`${fixtures}/test-image-2.png`);
+    await expect(page.locator(".media-count")).toHaveText(/2 media uploaded/);
+  });
+
+  test("should persist uploaded media across reloads", async ({ page }) => {
+    await selectMediaBackground(page);
+    await page
+      .locator('input[type="file"]')
+      .setInputFiles(`${fixtures}/test-image.png`);
+    await expect(page.locator(".media-count")).toHaveText(/1 media uploaded/);
+
+    await page.reload();
+    await expect(page.locator(".image.fullscreen")).toBeVisible();
   });
 });
