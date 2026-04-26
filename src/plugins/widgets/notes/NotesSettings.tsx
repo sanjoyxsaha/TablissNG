@@ -3,7 +3,7 @@ import "./Notes.sass";
 import type { FC } from "react";
 import { FormattedMessage } from "react-intl";
 
-import { Icon, IconButton } from "../../../views/shared";
+import { IconButtonRaw } from "../../../components/icons";
 import { API } from "../../types";
 import { Data, defaultData } from "./data";
 
@@ -50,13 +50,12 @@ const NotesSettings: FC<API<Data>> = ({ data = defaultData, setData }) => {
         </label>
         <div className="alignment">
           {alignments.map((alignment) => (
-            <IconButton
+            <IconButtonRaw
               key={alignment.value}
+              icon={alignment.icon}
               onClick={() => setData({ ...data, textAlign: alignment.value })}
               primary={data.textAlign === alignment.value}
-            >
-              <Icon name={alignment.icon} />
-            </IconButton>
+            />
           ))}
         </div>
       </div>
@@ -71,13 +70,12 @@ const NotesSettings: FC<API<Data>> = ({ data = defaultData, setData }) => {
         </label>
         <div className="alignment">
           {alignments.map((alignment) => (
-            <IconButton
+            <IconButtonRaw
               key={alignment.value}
+              icon={alignment.icon}
               onClick={() => setData({ ...data, iconAlign: alignment.value })}
               primary={data.iconAlign === alignment.value}
-            >
-              <Icon name={alignment.icon} />
-            </IconButton>
+            />
           ))}
         </div>
       </div>
@@ -91,18 +89,16 @@ const NotesSettings: FC<API<Data>> = ({ data = defaultData, setData }) => {
           />
         </label>
         <div className="alignment">
-          <IconButton
+          <IconButtonRaw
+            icon="edit"
             onClick={() => setData({ ...data, placeholderStyle: "icon" })}
             primary={data.placeholderStyle === "icon"}
-          >
-            <Icon name="edit" />
-          </IconButton>
-          <IconButton
+          />
+          <IconButtonRaw
+            icon="edit-3"
             onClick={() => setData({ ...data, placeholderStyle: "text" })}
             primary={data.placeholderStyle === "text"}
-          >
-            <Icon name="edit-3" />
-          </IconButton>
+          />
         </div>
       </div>
 

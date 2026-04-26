@@ -1,7 +1,7 @@
-import { Icon } from "@iconify/react";
 import type { ChangeEvent, FC } from "react";
 import { FormattedMessage } from "react-intl";
 
+import { Icon } from "../../../components/icons";
 import { timingMessages } from "../../../locales/messages";
 import { defaultData, Props } from "./types";
 

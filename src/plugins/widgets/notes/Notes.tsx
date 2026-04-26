@@ -1,9 +1,9 @@
 import "./Notes.sass";
 
-import { Icon } from "@iconify/react";
 import { type FC, useState } from "react";
 import { FormattedMessage } from "react-intl";
 
+import { Icon } from "../../../components/icons";
 import { useKeyPress } from "../../../hooks";
 import { API } from "../../types";
 import { Data, defaultData } from "./data";

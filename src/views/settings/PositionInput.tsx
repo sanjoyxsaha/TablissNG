@@ -3,8 +3,8 @@ import "./PositionInput.sass";
 import type { FC } from "react";
 import { FormattedMessage } from "react-intl";
 
+import { IconButtonRaw } from "../../components/icons";
 import { WidgetPosition } from "../../db/state";
-import { Icon, IconButton } from "../shared";
 
 const positions = [
   {
@@ -67,12 +67,11 @@ const PositionInput: FC<Props> = ({ value, onChange }) => (
     <div className="grid">
       {positions.map((position) => (
         <div key={position.value} className="PositionInput-buttonContainer">
-          <IconButton
+          <IconButtonRaw
+            icon={position.icon}
             onClick={() => onChange(position.value)}
             primary={value === position.value}
-          >
-            <Icon name={position.icon} />
-          </IconButton>
+          />
         </div>
       ))}
     </div>

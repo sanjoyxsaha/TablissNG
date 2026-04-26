@@ -1,11 +1,11 @@
 import "./Settings.sass";
 
-import { Icon } from "@iconify/react";
 import { useEffect, useRef, useState } from "react";
 import { type FC, memo, useContext, useMemo } from "react";
 import GitHubButton from "react-github-btn";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 
+import { Icon } from "../../components/icons";
 import { UiContext } from "../../contexts/ui";
 import { exportStore, importStore, resetStore } from "../../db/action";
 import { db } from "../../db/state";

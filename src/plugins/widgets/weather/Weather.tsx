@@ -1,10 +1,10 @@
 import "./Weather.sass";
 
-import { Icon } from "@iconify/react";
 import type { FC } from "react";
 import { useEffect } from "react";
 import { defineMessages, useIntl } from "react-intl";
 
+import { Icon } from "../../../components/icons";
 import { useCachedEffect, useTime } from "../../../hooks";
 import { HOURS } from "../../../utils";
 import { getForecast, requestLocation } from "./api";

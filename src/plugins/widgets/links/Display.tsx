@@ -1,7 +1,7 @@
-import { Icon } from "@iconify/react";
 import { type FC, type MouseEvent, useMemo } from "react";
 import { defineMessages, useIntl } from "react-intl";
 
+import { Icon } from "../../../components/icons";
 import { isSpecialUrl, normalizeUrl } from "../../../utils";
 import { Cache, Link } from "./types";
 

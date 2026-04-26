@@ -1,4 +1,3 @@
-import { Icon } from "@iconify/react";
 import {
   type CSSProperties,
   type FC,
@@ -10,6 +9,7 @@ import {
 } from "react";
 import { FormattedMessage } from "react-intl";
 
+import { Icon } from "../../components/icons";
 import { setWidgetDisplay } from "../../db/action";
 import { db, WidgetDisplay } from "../../db/state";
 import { useKey } from "../../lib/db/react";

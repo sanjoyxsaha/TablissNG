@@ -1,9 +1,9 @@
 import "./Overlay.sass";
 
-import { Icon } from "@iconify/react";
 import { type FC, useContext } from "react";
 import { defineMessages, useIntl } from "react-intl";
 
+import { Icon } from "../../components/icons";
 import { ErrorContext } from "../../contexts/error";
 import { UiContext } from "../../contexts/ui";
 import { toggleFocus } from "../../db/action";

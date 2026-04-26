@@ -3,7 +3,7 @@ import "../links/Links.sass";
 
 import { FC, useEffect, useState } from "react";
 
-import Icon from "../../../views/shared/icons/Icon";
+import { Icon } from "../../../components/icons";
 import { Display } from "../links/Display";
 import { cleanTitle, truncateText } from "../topSites/TopSites";
 import { defaultData, Props } from "./types";

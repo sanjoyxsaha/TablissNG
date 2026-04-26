@@ -1,18 +1,13 @@
 import "./Input.sass";
 
-import { Icon } from "@iconify/react";
-import icons from "feather-icons/dist/icons.json";
 import type { ChangeEvent } from "react";
 import { FC, useEffect, useRef, useState } from "react";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 
-import { addIconData, normalizeUrl } from "../../../utils";
-import {
-  DownIcon,
-  IconButton,
-  RemoveIcon,
-  UpIcon,
-} from "../../../views/shared";
+import { Icon } from "../../../components/icons";
+import { fetchCollectionNames } from "../../../components/icons";
+import { IconButton } from "../../../components/icons";
+import { normalizeUrl } from "../../../utils";
 import { Cache, IconCacheItem, Link } from "./types";
 
 const messages = defineMessages({
@@ -79,20 +74,23 @@ type Props = Link & {
   setCache: (cache: Cache) => void;
 };
 
-const iconList = Object.keys(icons);
-
 const Input: FC<Props> = (props) => {
   const [urlValue, setUrlValue] = useState(props.url);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [iconList, setIconList] = useState<string[]>([]);
   const selectRef = useRef<HTMLSelectElement>(null);
   const intl = useIntl();
 
-  const handleOpenModal = () => setIsModalOpen(true);
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+    if (iconList.length === 0) {
+      fetchCollectionNames("feather").then(setIconList);
+    }
+  };
   const handleCloseModal = () => setIsModalOpen(false);
 
   const handleIconSelect = (icon: string, identifier: string) => {
-    addIconData(identifier + icon);
     props.onChange({ iconifyIdentifier: identifier, iconifyValue: icon });
     setIsModalOpen(false);
   };
@@ -197,26 +195,23 @@ const Input: FC<Props> = (props) => {
       <h5>
         <div className="title--buttons">
           <IconButton
+            icon="remove"
             onClick={props.onRemove}
             title={intl.formatMessage(messages.removeLink)}
-          >
-            <RemoveIcon />
-          </IconButton>
+          />
           {props.onMoveDown && (
             <IconButton
+              icon="down"
               onClick={props.onMoveDown}
               title={intl.formatMessage(messages.moveDown)}
-            >
-              <DownIcon />
-            </IconButton>
+            />
           )}
           {props.onMoveUp && (
             <IconButton
+              icon="up"
               onClick={props.onMoveUp}
               title={intl.formatMessage(messages.moveUp)}
-            >
-              <UpIcon />
-            </IconButton>
+            />
           )}
         </div>
 
@@ -637,7 +632,7 @@ const Input: FC<Props> = (props) => {
                     className="icon-box"
                     onClick={() => handleIconSelect(icon, "feather:")}
                   >
-                    <Icon icon={"feather:" + icon} />
+                    <Icon icon={"feather:" + icon} cache={false} />
                     <span>{icon.replace(/-/g, " ")}</span>
                   </button>
                 ))

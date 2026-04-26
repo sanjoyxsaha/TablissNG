@@ -1,7 +1,7 @@
-import { Icon } from "@iconify/react";
 import { type FC, useContext, useState } from "react";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 
+import { Icon } from "../../components/icons";
 import { ErrorContext } from "../../contexts/error";
 import { formatErrorLog } from "../../errorHandler";
 import Modal from "./modal/Modal";

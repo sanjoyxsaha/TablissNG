@@ -1,8 +1,8 @@
 import { createRoot } from "react-dom/client";
 
+import { initIcons } from "./components/icons";
 import { capture } from "./errorHandler";
 import { register as registerServiceWorker } from "./serviceWorker";
-import { preloadBaseIcons } from "./utils";
 import Root from "./views/Root";
 
 // Capture uncaught errors globally
@@ -11,8 +11,8 @@ window.addEventListener("error", (event) =>
 );
 window.addEventListener("unhandledrejection", (event) => capture(event.reason));
 
-// Pre-cache common icons
-preloadBaseIcons().catch(console.error);
+// Register bundled icons synchronously
+initIcons();
 
 // Render app into root element
 createRoot(document.getElementById("root")!).render(<Root />);

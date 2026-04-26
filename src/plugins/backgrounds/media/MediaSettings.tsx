@@ -4,9 +4,9 @@ import { useState } from "react";
 import { type FC } from "react";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 
+import { IconButton } from "../../../components/icons";
 import { useObjectUrls } from "../../../hooks";
 import { backgroundMessages } from "../../../locales/messages";
-import { IconButton, RemoveIcon } from "../../../views/shared";
 import BaseSettings from "../base/BaseSettings";
 import { defaultCache, defaultData, Props } from "./types";
 
@@ -150,11 +150,10 @@ const ImageSettings: FC<Props> = ({
                   <img src={url} />
                 )}
                 <IconButton
+                  icon="remove"
                   onClick={() => removeMedia(index)}
                   title={intl.formatMessage(messages.removeMedia)}
-                >
-                  <RemoveIcon />
-                </IconButton>
+                />
               </div>
             );
           })}

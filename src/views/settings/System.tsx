@@ -1,10 +1,10 @@
 import type { FC } from "react";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 
+import { IconButtonRaw } from "../../components/icons";
 import { db, FaviconMode } from "../../db/state";
 import { useKey } from "../../lib/db/react";
 import { localeOptions } from "../../locales/registry";
-import { Icon, IconButton } from "../shared";
 import TimeZoneInput from "../shared/timeZone/TimeZoneInput";
 
 const messages = defineMessages({
@@ -320,13 +320,12 @@ const System: FC = () => {
         <div className="PositionInput">
           <div className="u-grid-3x2-compact">
             {positions.map((position) => (
-              <IconButton
+              <IconButtonRaw
                 key={position.value}
+                icon={position.icon}
                 onClick={() => setSettingsIconPosition(position.value)}
                 primary={settingsIconPosition === position.value}
-              >
-                <Icon name={position.icon} />
-              </IconButton>
+              />
             ))}
           </div>
         </div>

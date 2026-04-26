@@ -3,8 +3,8 @@ import "./TodoItem.sass";
 import type { DragEvent } from "react";
 import { FC, useLayoutEffect, useRef, useState } from "react";
 
+import { Icon } from "../../../components/icons";
 import { useKeyPress } from "../../../hooks";
-import { Icon, RemoveIcon } from "../../../views/shared";
 import { State } from "./reducer";
 
 interface Props {
@@ -115,7 +115,7 @@ const TodoItem: FC<Props> = ({
         <Icon name={item.completed ? "check-circle" : "circle"} />
       </a>
       <a onMouseDown={onDelete} className="delete">
-        <RemoveIcon />
+        <Icon icon="remove" />
       </a>
     </div>
   );

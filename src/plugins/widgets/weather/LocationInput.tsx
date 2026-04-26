@@ -1,9 +1,9 @@
 import "./LocationInput.sass";
 
-import { Icon } from "@iconify/react";
 import { type FC, type FormEvent, useState } from "react";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 
+import { Icon } from "../../../components/icons";
 import { useToggle } from "../../../hooks";
 import { geocodeLocation, requestLocation } from "./api";
 import { Coordinates } from "./types";

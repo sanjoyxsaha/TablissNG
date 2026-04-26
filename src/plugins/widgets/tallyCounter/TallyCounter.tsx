@@ -1,9 +1,9 @@
 import "./TallyCounter.sass";
 
-import { Icon } from "@iconify/react";
 import type { FC } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
+import { Icon } from "../../../components/icons";
 import { API } from "../../types";
 import { messages } from "./messages";
 import { Data, defaultData } from "./types";

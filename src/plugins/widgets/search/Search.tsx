@@ -1,6 +1,5 @@
 import "./Search.sass";
 
-import { Icon } from "@iconify/react";
 import type {
   ChangeEvent,
   FormEvent,
@@ -9,6 +8,7 @@ import type {
 import { FC, useRef, useState } from "react";
 import { defineMessages, useIntl } from "react-intl";
 
+import { Icon } from "../../../components/icons";
 import { useKeyPress } from "../../../hooks";
 import { isSpecialUrl } from "../../../utils";
 import {

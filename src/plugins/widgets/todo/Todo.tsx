@@ -1,12 +1,12 @@
 import { FC, useEffect } from "react";
 
+import { Icon } from "../../../components/icons";
 import {
   useKeyPress,
   useSavedReducer,
   useTime,
   useToggle,
 } from "../../../hooks";
-import { DownIcon, ExpandIcon, Icon, UpIcon } from "../../../views/shared";
 import {
   addTodo,
   removeTodo,
@@ -66,13 +66,15 @@ const Todo: FC<Props> = ({ data = defaultData, setData }) => {
 
       <div>
         <a onClick={() => dispatch(addTodo())}>
-          <ExpandIcon />
+          <Icon icon="expand" />
         </a>{" "}
         <a onClick={toggleShowCompleted}>
-          <Icon name={showCompleted ? "check-circle" : "circle"} />
+          <Icon icon={showCompleted ? "check" : "unchecked"} />
         </a>{" "}
         {items.length > data.show && (
-          <a onClick={toggleShowMore}>{showMore ? <UpIcon /> : <DownIcon />}</a>
+          <a onClick={toggleShowMore}>
+            <Icon icon={showMore ? "up" : "down"} />
+          </a>
         )}
       </div>
     </div>

@@ -1,9 +1,9 @@
 import "./Links.sass";
 
-import { Icon } from "@iconify/react";
 import { FC, useEffect, useMemo } from "react";
 import { defineMessages, useIntl } from "react-intl";
 
+import { Icon } from "../../../components/icons";
 import { useKeyPress, useToggle } from "../../../hooks";
 import { Display } from "./Display";
 import { defaultCache, defaultData, Props } from "./types";

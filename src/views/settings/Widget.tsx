@@ -3,12 +3,12 @@ import "./Widget.sass";
 import type { FC } from "react";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 
+import { IconButton } from "../../components/icons";
 import { setWidgetDisplay } from "../../db/action";
 import { WidgetState } from "../../db/state";
 import { useToggle } from "../../hooks";
 import { sectionMessages } from "../../locales/messages";
 import { getConfig } from "../../plugins";
-import { DownIcon, Icon, IconButton, RemoveIcon, UpIcon } from "../shared";
 import PluginContainer from "../shared/Plugin";
 import ToggleSection from "../shared/ToggleSection";
 import WidgetDisplay from "./WidgetDisplay";
@@ -61,37 +61,33 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
     <fieldset className="Widget">
       <div className="title--buttons">
         <IconButton
+          icon="remove"
           onClick={onRemove}
           title={intl.formatMessage(messages.removeWidget)}
-        >
-          <RemoveIcon />
-        </IconButton>
+        />
 
         <IconButton
+          icon="settings"
           onClick={toggleIsOpen}
           title={intl.formatMessage(
             isOpen ? messages.closeSettings : messages.editSettings,
           )}
-        >
-          <Icon name="settings" />
-        </IconButton>
+        />
 
         {onMoveDown && (
           <IconButton
+            icon="down"
             onClick={onMoveDown}
             title={intl.formatMessage(messages.moveDown)}
-          >
-            <DownIcon />
-          </IconButton>
+          />
         )}
 
         {onMoveUp && (
           <IconButton
+            icon="up"
             onClick={onMoveUp}
             title={intl.formatMessage(messages.moveUp)}
-          >
-            <UpIcon />
-          </IconButton>
+          />
         )}
 
         <h4 onClick={toggleIsOpen}>

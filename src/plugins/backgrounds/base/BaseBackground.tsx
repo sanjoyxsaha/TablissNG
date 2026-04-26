@@ -1,6 +1,5 @@
 import "./BaseBackground.sass";
 
-import { Icon } from "@iconify/react";
 import {
   type CSSProperties,
   type FC,
@@ -10,6 +9,7 @@ import {
 } from "react";
 import { CrossFade } from "react-crossfade-simple";
 
+import { Icon } from "../../../components/icons";
 import { db } from "../../../db/state";
 import { useIsNight } from "../../../hooks";
 import { useValue } from "../../../lib/db/react";
