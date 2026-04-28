@@ -7,3 +7,5 @@ tsconfig.tsbuildinfo
 /TablissNG-Xcode-Project/**/*.xcuserstate
 /TablissNG-Xcode-Project/**/*.xcodeproj/xcuserdata
 /TablissNG-Xcode-Project/**/*.xcworkspace/xcuserdata
+src/locales/lang.compiled
+.eslintcache
