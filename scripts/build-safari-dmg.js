@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { execSync } from "child_process";
-import { existsSync, mkdirSync, rmSync, cpSync, readFileSync } from "fs";
+import { cpSync, existsSync, mkdirSync, readFileSync, rmSync } from "fs";
 import { join } from "path";
 
 const rootDir = process.cwd();

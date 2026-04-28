@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F4F71F1A2F991AF70081EEDF /* safari in Resources */ = {isa = PBXBuildFile; fileRef = F4F71F092F991AF70081EEDF /* safari */; };
 		F4F9975B2F988AD4007E8051 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F9975A2F988AD4007E8051 /* AppDelegate.swift */; };
 		F4F9975F2F988AD4007E8051 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = F4F9975D2F988AD4007E8051 /* Main.html */; };
 		F4F997612F988AD4007E8051 /* Icon.svg in Resources */ = {isa = PBXBuildFile; fileRef = F4F997602F988AD4007E8051 /* Icon.svg */; };
@@ -142,6 +141,7 @@
 				F4F997542F988AD4007E8051 /* Frameworks */,
 				F4F997552F988AD4007E8051 /* Resources */,
 				F4F9977F2F988AD5007E8051 /* Embed Foundation Extensions */,
+				A1B2C3D52F991AF70081EEDF /* Sync Version From package.json */,
 			);
 			buildRules = (
 			);
@@ -162,6 +162,8 @@
 				F4F9976E2F988AD5007E8051 /* Sources */,
 				F4F9976F2F988AD5007E8051 /* Frameworks */,
 				F4F997702F988AD5007E8051 /* Resources */,
+				A1B2C3D42F991AF70081EEDF /* Copy Web Extension Files */,
+				A1B2C3D62F991AF70081EEDF /* Sync Version From package.json */,
 			);
 			buildRules = (
 			);
@@ -230,11 +232,70 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4F71F1A2F991AF70081EEDF /* safari in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A1B2C3D42F991AF70081EEDF /* Copy Web Extension Files */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Web Extension Files";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nSRC=\"${SRCROOT}/../dist/safari/\"\nDEST=\"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/\"\nif [ ! -d \"$SRC\" ]; then\n  echo \"error: $SRC not found. Run 'pnpm build' from the repo root before building this Xcode target.\" 1>&2\n  exit 1\nfi\nmkdir -p \"$DEST\"\nrsync -a --exclude '.DS_Store' \"$SRC\" \"$DEST\"\n";
+		};
+		A1B2C3D52F991AF70081EEDF /* Sync Version From package.json */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Sync Version From package.json";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nPKG=\"${SRCROOT}/../package.json\"\nif [ ! -f \"$PKG\" ]; then\n  echo \"warning: $PKG not found; leaving CFBundleShortVersionString unchanged\"\n  exit 0\nfi\nVERSION=$(/usr/bin/awk -F'\\\"' '/\\\"version\\\"[[:space:]]*:/ {print $4; exit}' \"$PKG\")\nif [ -z \"$VERSION\" ]; then\n  echo \"warning: could not parse version from $PKG; leaving CFBundleShortVersionString unchanged\"\n  exit 0\nfi\nINFO_PLIST=\"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nif [ ! -f \"$INFO_PLIST\" ]; then\n  echo \"warning: $INFO_PLIST not found yet; skipping version sync\"\n  exit 0\nfi\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $VERSION\" \"$INFO_PLIST\"\necho \"note: set CFBundleShortVersionString to $VERSION in $INFO_PLIST\"\n";
+		};
+		A1B2C3D62F991AF70081EEDF /* Sync Version From package.json */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Sync Version From package.json";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nPKG=\"${SRCROOT}/../package.json\"\nif [ ! -f \"$PKG\" ]; then\n  echo \"warning: $PKG not found; leaving CFBundleShortVersionString unchanged\"\n  exit 0\nfi\nVERSION=$(/usr/bin/awk -F'\\\"' '/\\\"version\\\"[[:space:]]*:/ {print $4; exit}' \"$PKG\")\nif [ -z \"$VERSION\" ]; then\n  echo \"warning: could not parse version from $PKG; leaving CFBundleShortVersionString unchanged\"\n  exit 0\nfi\nINFO_PLIST=\"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nif [ ! -f \"$INFO_PLIST\" ]; then\n  echo \"warning: $INFO_PLIST not found yet; skipping version sync\"\n  exit 0\nfi\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $VERSION\" \"$INFO_PLIST\"\necho \"note: set CFBundleShortVersionString to $VERSION in $INFO_PLIST\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F4F997532F988AD4007E8051 /* Sources */ = {
@@ -402,14 +463,16 @@
 			};
 			name = Release;
 		};
-		F4F9977D2F988AD5007E8051 /* Debug */ = {
+			F4F9977D2F988AD5007E8051 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P6PV2R9443;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "TablissNG Extension/Info.plist";
@@ -428,7 +491,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bookcatkid.TablissNG.Extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -440,11 +503,13 @@
 		F4F9977E2F988AD5007E8051 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P6PV2R9443;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "TablissNG Extension/Info.plist";
@@ -463,7 +528,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bookcatkid.TablissNG.Extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -484,10 +549,12 @@
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TablissNG/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TablissNG;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -526,10 +593,12 @@
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TablissNG/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TablissNG;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;

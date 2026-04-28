@@ -8,7 +8,13 @@ import tseslint from "typescript-eslint";
 /** @type {import('eslint').Linter.Config} */
 export default defineConfig(
   {
-    ignores: ["dist/", "docs/.docusaurus/", "docs/build/", "target/"],
+    ignores: [
+      "dist/",
+      "docs/.docusaurus/",
+      "docs/build/",
+      "target/",
+      "TablissNG-Xcode-Project/",
+    ],
   },
   eslint.configs.recommended,
   tseslint.configs.recommended,
