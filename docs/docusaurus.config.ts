@@ -59,6 +59,40 @@ const config: Config = {
         theme: {
           customCss: "./src/css/custom.sass",
         },
+        sitemap: {
+          lastmod: "date",
+          ignorePatterns: ["/data-loss-warning"],
+          filename: "sitemap.xml",
+          createSitemapItems: async (params) => {
+            const items = await params.defaultCreateSitemapItems(params);
+            const priority: Record<string, number> = {
+              "/": 1.0,
+              "/gallery": 0.9,
+              "/intro": 0.9,
+              "/features": 0.9,
+            };
+            const byPrefix: [string, number][] = [
+              ["/getting-started", 0.7],
+              ["/community", 0.7],
+              ["/guides", 0.6],
+              ["/developing", 0.6],
+              ["/support", 0.5],
+              ["/category", 0.5],
+            ];
+            for (const item of items) {
+              const path = new URL(item.url).pathname;
+              item.priority =
+                priority[path] ??
+                byPrefix.find(([p]) => path.startsWith(p))?.[1] ??
+                0.5;
+            }
+            items.push({
+              url: `${params.siteConfig.url}/web/`,
+              priority: 0.8,
+            });
+            return items;
+          },
+        },
       } satisfies Preset.Options,
     ],
   ],
