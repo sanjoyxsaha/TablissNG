@@ -97,6 +97,20 @@ const config: Config = {
 
   themeConfig: {
     image: "img/screenshots/screenshot_1.png",
+    metadata: [
+      { property: "og:title", content: "TablissNG" },
+      {
+        property: "og:description",
+        content: "A beautiful, private, and customizable new tab page",
+      },
+      {
+        property: "og:image",
+        content: "https://tablissng.smrff.dev/img/screenshots/screenshot_1.png",
+      },
+      { property: "og:url", content: "https://tablissng.smrff.dev" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "theme-color", content: "#3498db" },
+    ],
     navbar: {
       title: "TablissNG",
       logo: {
