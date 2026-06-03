@@ -8,7 +8,7 @@ I also attempt to follow the [Conventional Commits](https://www.conventionalcomm
 
 ## [Unreleased]
 
-## [1.7.0] - 5/31/2026 | Build system overhaul, Trello drag-and-drop, weather forecast, and major refactoring
+## [1.7.0] - 6/2/2026 | Build system overhaul, Trello drag-and-drop, weather forecast, and major refactoring
 
 A massive release featuring a complete build system migration (webpack → rspack, npm → pnpm, Jest → rstest), a major Trello widget overhaul with drag-and-drop card management, a new 5-day weather forecast, an i18n pipeline rewrite, and the removal of two heavy dependencies (react-markdown and react-dropdown-select) replaced with custom lightweight implementations.
 
@@ -61,6 +61,8 @@ A massive release featuring a complete build system migration (webpack → rspac
 - perf: tune Unsplash params (q=75, auto=format). [765d5177](https://github.com/BookCatKid/TablissNG/commit/765d5177)
 
 ### Fixed
+
+- fix(plugins): fix north korean, weather error handling, slight suggestion fixes. [459d5320](https://github.com/BookCatKid/TablissNG/commit/459d532006afecc6b3ec757618f4f2476a7ed124)
 
 - fix: default scale input display. [f34ff054](https://github.com/BookCatKid/TablissNG/commit/f34ff054)
 
