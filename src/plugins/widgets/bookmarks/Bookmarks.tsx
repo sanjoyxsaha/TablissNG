@@ -145,6 +145,8 @@ const Node: FC<NodeProps> = ({
         number={10} // Set to ten so that it doesn't display a hover title. Kinda hacky, but whatever
         linkOpenStyle={false} // Just use default I guess
         linksNumbered={false}
+        customWidth={iconSize}
+        customHeight={iconSize}
         iconConfig={
           node.url
             ? {

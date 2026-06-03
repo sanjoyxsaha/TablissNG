@@ -255,7 +255,7 @@
   "plugins.links.input.fromFavicone": "Von Favicone",
   "plugins.links.input.fromGoogle": "Von Google",
   "plugins.links.input.fromIconify": "Von Iconify",
-  "plugins.links.input.githubIssue": "this GitHub issue",
+  "plugins.links.input.githubIssue": "diesen GitHub-Fehler",
   "plugins.links.input.icon": "Symbol",
   "plugins.links.input.iconHeight": "Symbolhöhe",
   "plugins.links.input.iconifyHelp": "Gib den Iconify-Bezeichner für das Symbol ein, das du in deinen Links verwenden möchten. Weitere Informationen findest du unter",

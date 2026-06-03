@@ -255,7 +255,7 @@
   "plugins.links.input.fromFavicone": "Favicone'dan",
   "plugins.links.input.fromGoogle": "Google'dan",
   "plugins.links.input.fromIconify": "Iconify'dan",
-  "plugins.links.input.githubIssue": "this GitHub issue",
+  "plugins.links.input.githubIssue": "bu GitHub konusu",
   "plugins.links.input.icon": "Simge",
   "plugins.links.input.iconHeight": "Simge Yüksekliği",
   "plugins.links.input.iconifyHelp": "Bağlantılarınızda kullanmak istediğiniz simgenin iconify tanımlayıcısını girin. Daha ayrıntılı bilgi için bkz.",
