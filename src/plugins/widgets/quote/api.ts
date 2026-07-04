@@ -1,4 +1,5 @@
 import { API } from "../../types";
+import { bundledQuotes } from "../myQuotes/bundled";
 import { bibleVerses } from "./bibleVerses";
 import { Quote } from "./types";
 
@@ -23,16 +24,11 @@ async function getRandomQuotableQuote(): Promise<{
   author: string | undefined;
 }> {
   try {
-    let res;
-    try {
-      res = await fetch("http://api.quotable.io/quotes/random?limit=1");
-    } catch (err) {
-      try {
-        res = await fetch("https://api.quotable.io/quotes/random?limit=1");
-      } catch (err2) {
-        res = await fetch("https://quotable.vercel.app/quotes/random?limit=1");
-      }
-    }
+    // api.quotable.io is gone (DNS lapsed after the project was abandoned);
+    // only the community mirror remains.
+    const res = await fetch(
+      "https://quotable.vercel.app/quotes/random?limit=1",
+    );
     const body = await res.json();
     const quote = body[0];
 
@@ -41,9 +37,12 @@ async function getRandomQuotableQuote(): Promise<{
       author: quote.author,
     };
   } catch (err) {
+    // Fall back to a bundled quote rather than caching an error message.
+    const fallback =
+      bundledQuotes[Math.floor(Math.random() * bundledQuotes.length)];
     return {
-      quote: "Unable to get quotable quote.",
-      author: undefined,
+      quote: fallback.quote,
+      author: fallback.author,
     };
   }
 }
