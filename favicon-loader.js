@@ -1,0 +1,1 @@
+!function(){let t="icons/128.png",e=localStorage.getItem("tabliss/favicon");e&&(t=e);let n=document.getElementById("tabliss-favicon");n&&(n.href=t)}();
