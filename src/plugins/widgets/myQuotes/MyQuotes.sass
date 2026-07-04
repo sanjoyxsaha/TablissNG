@@ -1,0 +1,31 @@
+.MyQuotes
+    position: relative
+    overflow-y: hidden
+    max-height: 33vh
+
+    &:hover
+        overflow-y: auto
+
+    h4
+        line-height: 1.25 !important
+
+    sub
+        bottom: 0
+
+    .MyQuotesRefresh
+        position: absolute
+        top: 0
+        right: -1.75em
+        border: none
+        background: transparent
+        color: inherit
+        font-size: 1em
+        cursor: pointer
+        opacity: 0
+        transition: opacity 0.2s
+
+    &:hover .MyQuotesRefresh
+        opacity: 0.7
+
+    .MyQuotesRefresh:hover
+        opacity: 1

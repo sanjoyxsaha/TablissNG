@@ -16,6 +16,7 @@ import leetcode from "./leetcode";
 import links from "./links";
 import literatureClock from "./literatureClock";
 import message from "./message";
+import myQuotes from "./myQuotes";
 import notes from "./notes";
 import palette from "./palette";
 import quote from "./quote";
@@ -45,6 +46,7 @@ export const widgetConfigs = [
   links,
   literatureClock,
   message,
+  myQuotes,
   notes,
   palette,
   quote,
