@@ -128,8 +128,10 @@ export type WidgetPosition =
 // Init data for the store
 const initData: State = {
   background: {
-    id: "default-unsplash",
-    key: "background/unsplash",
+    // Gradient instead of upstream's Unsplash default: Unsplash requires an
+    // API key baked in at build time and black-screens without one.
+    id: "default-gradient",
+    key: "background/gradient",
     display: {
       luminosity: -0.2,
       blur: 0,
